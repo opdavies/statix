@@ -1,0 +1,15 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+{
+  alpha = 1;
+
+  text = ''
+    foo
+
+
+    bar
+  '';
+}
+---

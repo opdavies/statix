@@ -1,0 +1,13 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+let
+  alpha = 1;
+
+
+  beta = 2;
+in
+  foo + bar
+---
+<temp_file_path>>2:13:W:35:[blank_lines] no more than one blank line may follow one another

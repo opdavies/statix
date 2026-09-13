@@ -1,0 +1,21 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+let
+  alpha = 1;
+
+
+  beta = 2;
+in
+  foo + bar
+---
+[blank_lines] Warning: Excess blank lines
+   ╭─[ <temp_file_path>:2:13 ]
+   │
+ 2 │ ╭─▶   alpha = 1;
+   ┆ ┆   
+ 5 │ ├─▶   beta = 2;
+   │ │                 
+   │ ╰───────────────── no more than one blank line may follow one another
+───╯

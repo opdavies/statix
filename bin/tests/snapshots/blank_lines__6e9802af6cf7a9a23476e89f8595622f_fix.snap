@@ -1,0 +1,20 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+{
+  alpha = 1;
+
+
+  beta = 2;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,6 +1,5 @@
+ {
+   alpha = 1;
+ 
+-
+   beta = 2;
+ }

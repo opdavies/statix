@@ -1,0 +1,13 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+{
+  letters = [
+    "a"
+    "b"
+
+  ];
+}
+---
+<temp_file_path>>4:8:W:35:[blank_lines] no blank line may come before the closing delimiter

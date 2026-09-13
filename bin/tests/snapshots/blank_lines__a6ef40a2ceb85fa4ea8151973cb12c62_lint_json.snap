@@ -1,0 +1,51 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+{
+  letters = [
+    "a"
+    "b"
+
+  ];
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "blank_lines",
+      "note": "Excess blank lines",
+      "code": 35,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 8
+            },
+            "to": {
+              "line": 6,
+              "column": 3
+            }
+          },
+          "message": "no blank line may come before the closing delimiter",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 4,
+                "column": 8
+              },
+              "to": {
+                "line": 6,
+                "column": 3
+              }
+            },
+            "fix": "\n  "
+          }
+        }
+      ]
+    }
+  ]
+}

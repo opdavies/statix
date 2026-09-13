@@ -1,0 +1,21 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+{
+  letters = [
+    "a"
+    "b"
+
+  ];
+}
+---
+[blank_lines] Warning: Excess blank lines
+   ╭─[ <temp_file_path>:4:8 ]
+   │
+ 4 │ ╭─▶     "b"
+   ┆ ┆   
+ 6 │ ├─▶   ];
+   │ │          
+   │ ╰────────── no blank line may come before the closing delimiter
+───╯

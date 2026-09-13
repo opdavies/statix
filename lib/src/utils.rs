@@ -79,7 +79,7 @@ pub fn blank_line_between(first: &SyntaxNode, second: &SyntaxNode) -> bool {
     first
         .siblings_with_tokens(Direction::Next)
         .take_while(|element| element.as_node() != Some(second))
-        .filter_map(|element| element.into_token())
+        .filter_map(NodeOrToken::into_token)
         .filter(|token| token.kind() == SyntaxKind::TOKEN_WHITESPACE)
         .any(|token| token.text().matches('\n').count() >= 2)
 }

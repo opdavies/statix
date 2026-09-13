@@ -1,0 +1,21 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+{
+  alpha = 1;
+
+  beta = 2;
+
+
+}
+---
+[blank_lines] Warning: Excess blank lines
+   ╭─[ <temp_file_path>:4:12 ]
+   │
+ 4 │ ╭─▶   beta = 2;
+   ┆ ┆   
+ 6 │ ├─▶ 
+   │ │      
+   │ ╰────── no blank line may come before the closing delimiter
+───╯

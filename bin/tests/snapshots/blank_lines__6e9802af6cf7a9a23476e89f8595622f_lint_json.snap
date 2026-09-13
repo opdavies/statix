@@ -1,0 +1,50 @@
+---
+source: bin/tests/blank_lines.rs
+assertion_line: 7
+---
+{
+  alpha = 1;
+
+
+  beta = 2;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "blank_lines",
+      "note": "Excess blank lines",
+      "code": 35,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 2,
+              "column": 13
+            },
+            "to": {
+              "line": 5,
+              "column": 3
+            }
+          },
+          "message": "no more than one blank line may follow one another",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 2,
+                "column": 13
+              },
+              "to": {
+                "line": 5,
+                "column": 3
+              }
+            },
+            "fix": "\n\n  "
+          }
+        }
+      ]
+    }
+  ]
+}
