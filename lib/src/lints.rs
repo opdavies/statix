@@ -19,5 +19,6 @@ lints! {
     useless_has_attr,
     repeated_keys,
     empty_list_concat,
-    enable_first
+    enable_first,
+    attribute_ordering
 }

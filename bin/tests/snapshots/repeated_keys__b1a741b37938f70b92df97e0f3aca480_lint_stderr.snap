@@ -1,5 +1,6 @@
 ---
 source: bin/tests/repeated_keys.rs
+assertion_line: 7
 ---
 {
   foo.bar = 1;
@@ -7,6 +8,13 @@ source: bin/tests/repeated_keys.rs
   foo.again = 1;
 }
 ---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:4:3 ]
+   │
+ 4 │   foo.again = 1;
+   │   ───────┬──────  
+   │          ╰──────── foo.again is out of alphabetical order
+───╯
 [repeated_keys] Warning: Avoid repeated keys in attribute sets
    ╭─[ <temp_file_path>:2:3 ]
    │

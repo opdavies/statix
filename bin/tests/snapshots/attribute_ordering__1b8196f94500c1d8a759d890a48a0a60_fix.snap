@@ -1,0 +1,11 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  # about zebra
+  zebra = true;
+  # about apple
+  apple = true;
+}
+---

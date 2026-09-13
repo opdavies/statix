@@ -1,5 +1,6 @@
 ---
 source: bin/tests/repeated_keys.rs
+assertion_line: 7
 ---
 {
   foo.bar = 1;
@@ -10,6 +11,28 @@ source: bin/tests/repeated_keys.rs
 {
   "file": "<temp_file_path>",
   "report": [
+    {
+      "name": "attribute_ordering",
+      "note": "Attributes are not in alphabetical order",
+      "code": 31,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 3
+            },
+            "to": {
+              "line": 4,
+              "column": 17
+            }
+          },
+          "message": "`foo.again` is out of alphabetical order",
+          "suggestion": null
+        }
+      ]
+    },
     {
       "name": "repeated_keys",
       "note": "Avoid repeated keys in attribute sets",

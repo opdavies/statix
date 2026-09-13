@@ -1,0 +1,18 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  # about zebra
+  zebra = true;
+  # about apple
+  apple = true;
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:5:3 ]
+   │
+ 5 │   apple = true;
+   │   ──────┬──────  
+   │         ╰──────── apple is out of alphabetical order
+───╯

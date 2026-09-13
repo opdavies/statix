@@ -1,0 +1,18 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  apple = true;
+  Banana = true;
+  DOMAIN = true;
+  _module = true;
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   Banana = true;
+   │   ───────┬──────  
+   │          ╰──────── Banana is out of alphabetical order
+───╯

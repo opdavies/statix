@@ -1,0 +1,36 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  zebra = true;
+  apple = true;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "attribute_ordering",
+      "note": "Attributes are not in alphabetical order",
+      "code": 31,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 16
+            }
+          },
+          "message": "`apple` is out of alphabetical order",
+          "suggestion": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  Banana = true;
+  DOMAIN = true;
+  _module = true;
+  apple = true;
+}
+---

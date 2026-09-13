@@ -1,0 +1,10 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  zebra = true;
+  yak = true;
+  apple = true;
+}
+---

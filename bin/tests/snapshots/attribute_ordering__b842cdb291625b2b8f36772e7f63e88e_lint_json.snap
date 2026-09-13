@@ -1,0 +1,10 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  inherit lib;
+  apple = true;
+  zebra = true;
+}
+---

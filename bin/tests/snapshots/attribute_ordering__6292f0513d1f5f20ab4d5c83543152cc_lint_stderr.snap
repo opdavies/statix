@@ -1,0 +1,16 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  zebra = true;
+  enabledCollectors = [ ];
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   enabledCollectors = [ ];
+   │   ────────────┬───────────  
+   │               ╰───────────── enabledCollectors is out of alphabetical order
+───╯

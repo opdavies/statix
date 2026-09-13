@@ -1,0 +1,11 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  zebra = true;
+  yak = true;
+  apple = true;
+}
+---
+<temp_file_path>>3:3:W:31:[attribute_ordering] `yak` is out of alphabetical order

@@ -1,0 +1,12 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  apple = true;
+  Banana = true;
+  DOMAIN = true;
+  _module = true;
+}
+---
+<temp_file_path>>3:3:W:31:[attribute_ordering] `Banana` is out of alphabetical order

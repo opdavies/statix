@@ -1,0 +1,17 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  zebra = true;
+  yak = true;
+  apple = true;
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   yak = true;
+   │   ─────┬─────  
+   │        ╰─────── yak is out of alphabetical order
+───╯

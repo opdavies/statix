@@ -1,0 +1,16 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+{
+  services.zebra = true;
+  services.apple = true;
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   services.apple = true;
+   │   ───────────┬──────────  
+   │              ╰──────────── services.apple is out of alphabetical order
+───╯
