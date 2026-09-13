@@ -30,7 +30,19 @@ assertion_line: 7
             }
           },
           "message": "`Banana` is out of alphabetical order",
-          "suggestion": null
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 6,
+                "column": 2
+              }
+            },
+            "fix": "{\n  Banana = true;\n  DOMAIN = true;\n  _module = true;\n  apple = true;\n}"
+          }
         }
       ]
     }

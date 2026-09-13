@@ -8,3 +8,13 @@ assertion_line: 7
   bar = 2;
 }
 ---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,5 +1,5 @@
+ {
++  bar = 2;
++  extraModulePackages = [ ];
+   foo = 1;
+-  extraModulePackages = [ ];
+-  bar = 2;
+ }

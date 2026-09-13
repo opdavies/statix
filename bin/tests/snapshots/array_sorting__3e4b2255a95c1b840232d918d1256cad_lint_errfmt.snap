@@ -1,0 +1,12 @@
+---
+source: bin/tests/array_sorting.rs
+assertion_line: 7
+---
+[
+  # about nvme
+  "nvme"
+  # about ahci
+  "ahci"
+]
+---
+<temp_file_path>>5:3:W:34:[array_sorting] `"ahci"` is out of alphabetical order

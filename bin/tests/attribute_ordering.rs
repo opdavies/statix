@@ -112,5 +112,16 @@ generate_tests! {
               apple = true;
             }
         "},
+
+        // `rec` has to survive the rewrite. Dropping it turns every
+        // reference between the set's own attributes into an undefined
+        // variable, which is a broken build rather than a tidier one.
+        indoc! {"
+            stdenv.mkDerivation rec {
+              version = \"1.1.1\";
+              pname = \"thing\";
+              src = fetchurl { url = \"v${version}\"; };
+            }
+        "},
     ],
 }

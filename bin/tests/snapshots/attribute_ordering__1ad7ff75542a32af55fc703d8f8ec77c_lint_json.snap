@@ -2,9 +2,10 @@
 source: bin/tests/attribute_ordering.rs
 assertion_line: 7
 ---
-{
-  services.zebra = true;
-  services.apple = true;
+stdenv.mkDerivation rec {
+  version = "1.1.1";
+  pname = "thing";
+  src = fetchurl { url = "v${version}"; };
 }
 ---
 {
@@ -24,22 +25,22 @@ assertion_line: 7
             },
             "to": {
               "line": 3,
-              "column": 25
+              "column": 19
             }
           },
-          "message": "`services.apple` is out of alphabetical order",
+          "message": "`pname` is out of alphabetical order",
           "suggestion": {
             "at": {
               "from": {
                 "line": 1,
-                "column": 1
+                "column": 21
               },
               "to": {
-                "line": 4,
+                "line": 5,
                 "column": 2
               }
             },
-            "fix": "{\n  services.apple = true;\n  services.zebra = true;\n}"
+            "fix": "rec {\n  pname = \"thing\";\n  src = fetchurl { url = \"v${version}\"; };\n  version = \"1.1.1\";\n}"
           }
         }
       ]

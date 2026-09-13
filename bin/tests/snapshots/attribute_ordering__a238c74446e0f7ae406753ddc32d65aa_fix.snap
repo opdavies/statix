@@ -7,3 +7,11 @@ assertion_line: 7
   services.apple = true;
 }
 ---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,4 +1,4 @@
+ {
++  services.apple = true;
+   services.zebra = true;
+-  services.apple = true;
+ }

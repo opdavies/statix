@@ -1,7 +1,7 @@
-use crate::{Metadata, Report, Rule, utils};
+use crate::{Metadata, Report, Rule, Suggestion, utils};
 
 use macros::lint;
-use rnix::{NodeOrToken, SyntaxElement, SyntaxKind, ast::List};
+use rnix::{NodeOrToken, Root, SyntaxElement, SyntaxKind, SyntaxNode, ast::List};
 use rowan::ast::AstNode as _;
 
 /// ## What it does
@@ -48,31 +48,45 @@ impl Rule for ArraySorting {
             return None;
         };
 
-        let list = List::cast(node.clone())?;
-
         if !utils::is_multiline(node) {
             return None;
         }
 
-        let elements: Vec<_> = list
-            .items()
-            .map(|item| (item.syntax().text().to_string(), item))
-            .collect();
+        let parts = utils::segments(node);
 
         // A single element is in order by definition, and one spanning lines
         // means this is not the kind of list worth sorting.
-        if elements.len() < 2 || elements.iter().any(|(text, _)| text.contains('\n')) {
+        if parts.items.len() < 2
+            || parts
+                .items
+                .iter()
+                .any(|element| utils::is_multiline(&element.node))
+        {
             return None;
         }
 
-        let (text, out_of_place) = elements
-            .windows(2)
-            .find(|pair| pair[0].0 > pair[1].0)
-            .map(|pair| (&pair[1].0, &pair[1].1))?;
+        let text_of = |element: &SyntaxNode| element.text().to_string();
 
-        Some(self.report().diagnostic(
-            out_of_place.syntax().text_range(),
-            format!("`{text}` is out of alphabetical order"),
+        let out_of_place = parts
+            .items
+            .windows(2)
+            .find(|pair| text_of(&pair[0].node) > text_of(&pair[1].node))
+            .map(|pair| pair[1].node.clone())?;
+
+        let mut order: Vec<usize> = (0..parts.items.len()).collect();
+        order.sort_by_key(|&position| text_of(&parts.items[position].node));
+
+        let text = utils::rebuild(&parts, &order);
+
+        let sorted = Root::parse(&text)
+            .syntax()
+            .descendants()
+            .find_map(|node| List::cast(node).map(|list| list.syntax().clone()))?;
+
+        Some(self.report().suggest(
+            out_of_place.text_range(),
+            format!("`{}` is out of alphabetical order", text_of(&out_of_place)),
+            Suggestion::with_replacement(node.text_range(), sorted),
         ))
     }
 }

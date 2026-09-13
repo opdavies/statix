@@ -29,7 +29,19 @@ assertion_line: 7
             }
           },
           "message": "`foo.again` is out of alphabetical order",
-          "suggestion": null
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            "fix": "{\n  foo.again = 1;\n  foo.bar = 1;\n  foo.baz.\"hello\" = 1;\n}"
+          }
         }
       ]
     },

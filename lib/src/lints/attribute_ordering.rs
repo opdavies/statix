@@ -1,8 +1,8 @@
-use crate::{Metadata, Report, Rule, utils};
+use crate::{Metadata, Report, Rule, Suggestion, utils};
 
 use macros::lint;
 use rnix::{
-    NodeOrToken, SyntaxElement, SyntaxKind,
+    NodeOrToken, Root, SyntaxElement, SyntaxKind, SyntaxNode,
     ast::{AttrSet, HasEntry as _},
 };
 use rowan::ast::AstNode as _;
@@ -69,11 +69,58 @@ impl Rule for AttributeOrdering {
         let (name, out_of_place) = ordered
             .windows(2)
             .find(|pair| pair[0].0 > pair[1].0)
-            .map(|pair| (&pair[1].0, &pair[1].1))?;
+            .map(|pair| (pair[1].0.clone(), pair[1].1.syntax().clone()))?;
 
-        Some(self.report().diagnostic(
-            out_of_place.syntax().text_range(),
-            format!("`{name}` is out of alphabetical order"),
+        let at = out_of_place.text_range();
+        let message = format!("`{name}` is out of alphabetical order");
+
+        // A set this cannot rewrite is still reported, just not fixed.
+        let Some(sorted) = sort_entries(node) else {
+            return Some(self.report().diagnostic(at, message));
+        };
+
+        Some(self.report().suggest(
+            at,
+            message,
+            Suggestion::with_replacement(node.text_range(), sorted),
         ))
     }
+}
+
+/// Rewrite the set with its attributes in order.
+///
+/// Sorting only the assignments would move them past an `inherit`, which is
+/// a different kind of entry and stays where the author put it. Only the
+/// positions the assignments already occupy are reordered among themselves.
+///
+/// Each attribute keeps the trivia that preceded it, so a comment above one
+/// moves with it. The trivia is held in place while the attributes move
+/// beneath it, which keeps the indentation and any blank line belonging to a
+/// position rather than dragging it around.
+fn sort_entries(node: &SyntaxNode) -> Option<SyntaxNode> {
+    let parts = utils::segments(node);
+    let sortable = utils::sortable_positions(&parts.items);
+
+    let mut sorted = sortable.clone();
+    sorted.sort_by_key(|&position| sort_key(&parts.items[position].node));
+
+    // Each sortable entry takes the next sortable position. An `inherit`,
+    // and everything the ordering skips, stays exactly where it was.
+    let mut order: Vec<usize> = (0..parts.items.len()).collect();
+
+    for (&target, &source) in sortable.iter().zip(&sorted) {
+        order[target] = source;
+    }
+
+    let text = utils::rebuild(&parts, &order);
+
+    Root::parse(&text)
+        .syntax()
+        .descendants()
+        .find_map(|candidate| AttrSet::cast(candidate).map(|set| set.syntax().clone()))
+}
+
+fn sort_key(entry: &SyntaxNode) -> Option<String> {
+    rnix::ast::AttrpathValue::cast(entry.clone())
+        .and_then(|assignment| utils::attribute_name(&assignment))
 }

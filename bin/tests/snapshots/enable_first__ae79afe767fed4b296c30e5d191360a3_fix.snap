@@ -10,3 +10,14 @@ assertion_line: 7
   };
 }
 ---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,7 +1,7 @@
+ {
+   enable = true;
+   initrd = {
++    enable = true;
+     kernelModules = [ ];
+-    enable = true;
+   };
+ }

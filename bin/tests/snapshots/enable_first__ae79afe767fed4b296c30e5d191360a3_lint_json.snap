@@ -53,7 +53,19 @@ assertion_line: 7
             }
           },
           "message": "`enable` should be the first attribute in this set",
-          "suggestion": null
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 3,
+                "column": 12
+              },
+              "to": {
+                "line": 6,
+                "column": 4
+              }
+            },
+            "fix": "{\n    enable = true;\n    kernelModules = [ ];\n  }"
+          }
         }
       ]
     }

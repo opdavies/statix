@@ -1,0 +1,19 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+stdenv.mkDerivation rec {
+  version = "1.1.1";
+  pname = "thing";
+  src = fetchurl { url = "v${version}"; };
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,5 +1,5 @@
+ stdenv.mkDerivation rec {
+-  version = "1.1.1";
+   pname = "thing";
+   src = fetchurl { url = "v${version}"; };
++  version = "1.1.1";
+ }

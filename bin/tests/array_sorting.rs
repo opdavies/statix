@@ -74,5 +74,24 @@ generate_tests! {
               pkgs.apple
             ]
         "},
+
+        // a comment travels with the element it sits above
+        indoc! {"
+            [
+              # about nvme
+              \"nvme\"
+              \"ahci\"
+            ]
+        "},
+
+        // a comment on each of them
+        indoc! {"
+            [
+              # about nvme
+              \"nvme\"
+              # about ahci
+              \"ahci\"
+            ]
+        "},
     ],
 }

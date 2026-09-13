@@ -28,7 +28,19 @@ assertion_line: 7
             }
           },
           "message": "`enable` should be the first attribute in this set",
-          "suggestion": null
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 4,
+                "column": 2
+              }
+            },
+            "fix": "{\n  enable = true;\n  enableCompletion = true;\n}"
+          }
         }
       ]
     }

@@ -3,15 +3,17 @@ source: bin/tests/array_sorting.rs
 assertion_line: 7
 ---
 [
-  pkgs.vim
-  pkgs.git
+  # about nvme
+  "nvme"
+  "ahci"
 ]
 ---
 --- <temp_file_path>
 +++ <temp_file_path> [fixed]
-@@ -1,4 +1,4 @@
+@@ -1,5 +1,5 @@
  [
-+  pkgs.git
-   pkgs.vim
--  pkgs.git
++  "ahci"
+   # about nvme
+   "nvme"
+-  "ahci"
  ]

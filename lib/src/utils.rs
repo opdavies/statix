@@ -1,5 +1,5 @@
 use rnix::{
-    SyntaxKind, SyntaxNode, TextRange,
+    NodeOrToken, SyntaxKind, SyntaxNode, TextRange,
     ast::{Attr, AttrpathValue, Entry},
 };
 use rowan::{Direction, ast::AstNode as _};
@@ -87,6 +87,134 @@ pub fn blank_line_between(first: &SyntaxNode, second: &SyntaxNode) -> bool {
 /// True when the node is written across more than one line.
 pub fn is_multiline(node: &SyntaxNode) -> bool {
     node.text().to_string().contains('\n')
+}
+
+/// One item of a set or a list, with the trivia that precedes it.
+pub struct Segment {
+    /// Whitespace before any comment, including whatever blank line
+    /// separates this item from the one above. It describes the gap rather
+    /// than the item, so a reordering leaves it where it is.
+    pub spacing: String,
+
+    /// The comments immediately above the item, and the indentation after
+    /// them. These describe the item, so a reordering takes them with it.
+    pub comments: String,
+
+    pub node: SyntaxNode,
+}
+
+/// A node's items, with the trivia around them and the text that opens and
+/// closes it.
+pub struct Parts {
+    /// Everything before the first item, delimiter included. Capturing it
+    /// verbatim rather than assuming a `{` is what keeps `rec` on a
+    /// recursive set: dropping it silently turns every reference between
+    /// the set's own attributes into an undefined variable.
+    pub opening: String,
+
+    pub items: Vec<Segment>,
+
+    /// Trivia after the last item, and the closing delimiter.
+    pub closing: String,
+}
+
+/// Split a node into the items it contains and everything around them.
+///
+/// Separating the two kinds of trivia is what lets a reordering carry a
+/// comment along with the thing it describes while leaving the blank lines
+/// that group the set where the author put them. Moving all of it would drag
+/// blank lines around; moving none of it would strand every comment above
+/// whatever ends up in its position.
+pub fn segments(parent: &SyntaxNode) -> Parts {
+    let mut items: Vec<Segment> = Vec::new();
+    let mut opening = String::new();
+    let mut spacing = String::new();
+    let mut comments = String::new();
+
+    for child in parent.children_with_tokens() {
+        match child {
+            NodeOrToken::Token(token) => match token.kind() {
+                SyntaxKind::TOKEN_COMMENT => comments.push_str(token.text()),
+                SyntaxKind::TOKEN_WHITESPACE => {
+                    // Once a comment has been seen, the rest of the run
+                    // belongs with it rather than with the gap above.
+                    if comments.is_empty() {
+                        spacing.push_str(token.text());
+                    } else {
+                        comments.push_str(token.text());
+                    }
+                }
+                // Any other token is part of the syntax holding the items,
+                // such as `rec`, `{` or `[`. Before the first item it opens
+                // the node; afterwards it closes it.
+                _ => {
+                    if items.is_empty() {
+                        opening.push_str(&std::mem::take(&mut spacing));
+                        opening.push_str(&std::mem::take(&mut comments));
+                        opening.push_str(token.text());
+                    } else {
+                        spacing.push_str(token.text());
+                    }
+                }
+            },
+            NodeOrToken::Node(node) => items.push(Segment {
+                spacing: std::mem::take(&mut spacing),
+                comments: std::mem::take(&mut comments),
+                node,
+            }),
+        }
+    }
+
+    Parts {
+        opening,
+        items,
+        closing: spacing + &comments,
+    }
+}
+
+/// Write the items back out in the given order, between the text that opened
+/// and closed the node.
+///
+/// `order[position]` names the item that should end up at `position`. The
+/// gap before each position stays with the position, while the comments
+/// above an item travel with it.
+pub fn rebuild(parts: &Parts, order: &[usize]) -> String {
+    let mut text = parts.opening.clone();
+
+    for (position, &source) in order.iter().enumerate() {
+        text.push_str(&parts.items[position].spacing);
+        text.push_str(&parts.items[source].comments);
+        text.push_str(&parts.items[source].node.text().to_string());
+    }
+
+    text.push_str(&parts.closing);
+
+    text
+}
+
+/// The positions holding an assignment. An `inherit` is a different kind of
+/// entry and stays where the author put it.
+pub fn assignment_positions(items: &[Segment]) -> Vec<usize> {
+    items
+        .iter()
+        .enumerate()
+        .filter(|(_, item)| item.node.kind() == SyntaxKind::NODE_ATTRPATH_VALUE)
+        .map(|(position, _)| position)
+        .collect()
+}
+
+/// The positions an alphabetical ordering may move, which is every
+/// assignment other than the enable family, that being a group of its own at
+/// the top of the set.
+pub fn sortable_positions(items: &[Segment]) -> Vec<usize> {
+    assignment_positions(items)
+        .into_iter()
+        .filter(|&position| {
+            AttrpathValue::cast(items[position].node.clone())
+                .and_then(|assignment| attribute_name(&assignment))
+                .is_some_and(|name| !is_enable_family(&name))
+        })
+        .collect()
 }
 
 pub fn with_preceeding_whitespace(node: &SyntaxNode) -> TextRange {

@@ -31,7 +31,19 @@ assertion_line: 7
             }
           },
           "message": "`ant` is out of alphabetical order",
-          "suggestion": null
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 2,
+                "column": 11
+              },
+              "to": {
+                "line": 5,
+                "column": 4
+              }
+            },
+            "fix": "{\n    ant = true;\n    zebra = true;\n  }"
+          }
         }
       ]
     }

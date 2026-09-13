@@ -28,7 +28,19 @@ assertion_line: 7
             }
           },
           "message": "`apple` is out of alphabetical order",
-          "suggestion": null
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 4,
+                "column": 2
+              }
+            },
+            "fix": "{\n  apple = true;\n  zebra = true;\n}"
+          }
         }
       ]
     }

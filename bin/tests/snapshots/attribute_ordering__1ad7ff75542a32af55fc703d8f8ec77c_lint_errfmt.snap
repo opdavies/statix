@@ -1,0 +1,11 @@
+---
+source: bin/tests/attribute_ordering.rs
+assertion_line: 7
+---
+stdenv.mkDerivation rec {
+  version = "1.1.1";
+  pname = "thing";
+  src = fetchurl { url = "v${version}"; };
+}
+---
+<temp_file_path>>3:3:W:31:[attribute_ordering] `pname` is out of alphabetical order

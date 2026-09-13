@@ -9,3 +9,14 @@ assertion_line: 7
   apple = true;
 }
 ---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,6 +1,6 @@
+ {
++  # about apple
++  apple = true;
+   # about zebra
+   zebra = true;
+-  # about apple
+-  apple = true;
+ }
