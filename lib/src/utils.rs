@@ -172,6 +172,21 @@ pub fn segments(parent: &SyntaxNode) -> Parts {
     }
 }
 
+/// Put a blank line above the item at `position`.
+///
+/// The gap already carries the line break and the indentation, so one more
+/// line break at its front is what leaves an empty line.
+pub fn add_blank_line_above(parts: &mut Parts, position: usize) {
+    if let Some(item) = parts.items.get_mut(position) {
+        item.spacing.insert(0, '\n');
+    }
+}
+
+/// The order that leaves every item where it is.
+pub fn unchanged_order(parts: &Parts) -> Vec<usize> {
+    (0..parts.items.len()).collect()
+}
+
 /// Write the items back out in the given order, between the text that opened
 /// and closed the node.
 ///

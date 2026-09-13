@@ -1,8 +1,8 @@
-use crate::{Metadata, Report, Rule, utils};
+use crate::{Metadata, Report, Rule, Suggestion, utils};
 
 use macros::lint;
 use rnix::{
-    NodeOrToken, SyntaxElement, SyntaxKind,
+    NodeOrToken, Root, SyntaxElement, SyntaxKind, SyntaxNode,
     ast::{AttrSet, HasEntry as _},
 };
 use rowan::ast::AstNode as _;
@@ -79,9 +79,37 @@ impl Rule for EnableBlankLine {
             return None;
         }
 
-        Some(self.report().diagnostic(
-            last_of_group.syntax().text_range(),
-            "a blank line should separate this from what follows",
+        let at = last_of_group.syntax().text_range();
+        let message = "a blank line should separate this from what follows";
+
+        let Some(separated) = separate(node, next.syntax()) else {
+            return Some(self.report().diagnostic(at, message));
+        };
+
+        Some(self.report().suggest(
+            at,
+            message,
+            Suggestion::with_replacement(node.text_range(), separated),
         ))
     }
+}
+
+/// Rewrite the set with a blank line above `next`.
+fn separate(node: &SyntaxNode, next: &SyntaxNode) -> Option<SyntaxNode> {
+    let mut parts = utils::segments(node);
+
+    let position = parts
+        .items
+        .iter()
+        .position(|item| &item.node == next)?;
+
+    utils::add_blank_line_above(&mut parts, position);
+
+    let order = utils::unchanged_order(&parts);
+    let text = utils::rebuild(&parts, &order);
+
+    Root::parse(&text)
+        .syntax()
+        .descendants()
+        .find_map(|candidate| AttrSet::cast(candidate).map(|set| set.syntax().clone()))
 }

@@ -29,7 +29,19 @@ assertion_line: 7
             }
           },
           "message": "a blank line should separate this from what follows",
-          "suggestion": null
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            "fix": "{\n  enable = true;\n  enableCompletion = true;\n\n  cdpath = \"a\";\n}"
+          }
         }
       ]
     }

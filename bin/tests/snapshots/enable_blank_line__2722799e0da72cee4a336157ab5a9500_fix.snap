@@ -9,9 +9,10 @@ assertion_line: 7
 ---
 --- <temp_file_path>
 +++ <temp_file_path> [fixed]
-@@ -1,4 +1,4 @@
+@@ -1,4 +1,5 @@
  {
-+  enable = true;
-   nssmdns4 = true;
--  enable = true;
+-  nssmdns4 = true;
+   enable = true;
++
++  nssmdns4 = true;
  }

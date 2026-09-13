@@ -26,7 +26,4 @@ assertion_line: 7
  6 │ ├─▶   ];
    │ │          
    │ ╰────────── a blank line should come before this multiline array
- 7 │       bar = 2;
-   │       ────┬───  
-   │           ╰───── a blank line should follow the multiline array above
 ───╯

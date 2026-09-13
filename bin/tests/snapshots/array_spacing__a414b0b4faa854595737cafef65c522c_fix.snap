@@ -14,12 +14,12 @@ assertion_line: 7
 ---
 --- <temp_file_path>
 +++ <temp_file_path> [fixed]
-@@ -1,9 +1,9 @@
+@@ -1,9 +1,10 @@
  {
 +  bar = 2;
 +
    foo = 1;
--
+ 
    kernelModules = [
      "a"
      "b"

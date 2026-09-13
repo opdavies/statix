@@ -66,21 +66,19 @@ assertion_line: 7
             }
           },
           "message": "a blank line should come before this multiline array",
-          "suggestion": null
-        },
-        {
-          "at": {
-            "from": {
-              "line": 7,
-              "column": 3
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 8,
+                "column": 2
+              }
             },
-            "to": {
-              "line": 7,
-              "column": 11
-            }
-          },
-          "message": "a blank line should follow the multiline array above",
-          "suggestion": null
+            "fix": "{\n  foo = 1;\n\n  kernelModules = [\n    \"a\"\n    \"b\"\n  ];\n\n  bar = 2;\n}"
+          }
         }
       ]
     }
