@@ -1,0 +1,11 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  a = 1;
+  foo =
+    someLongThing;
+  zed = 2;
+}
+---

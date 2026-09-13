@@ -1,0 +1,24 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+  publish = {
+    x = 1;
+  };
+  zed = 2;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,7 +1,9 @@
+ {
+   foo = 1;
++
+   publish = {
+     x = 1;
+   };
++
+   zed = 2;
+ }

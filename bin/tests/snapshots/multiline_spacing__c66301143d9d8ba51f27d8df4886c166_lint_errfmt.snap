@@ -1,0 +1,13 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+  package = pkgs.writeShellApplication {
+    name = "x";
+  };
+  zed = 2;
+}
+---
+<temp_file_path>>3:3:W:33:[multiline_spacing] a blank line should come before this multiline attribute

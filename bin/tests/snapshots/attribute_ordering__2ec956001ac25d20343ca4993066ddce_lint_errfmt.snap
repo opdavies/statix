@@ -10,4 +10,5 @@ assertion_line: 7
   zebra = true;
 }
 ---
+<temp_file_path>>6:3:W:33:[multiline_spacing] a blank line should follow the multiline attribute above
 <temp_file_path>>4:5:W:31:[attribute_ordering] `ant` is out of alphabetical order

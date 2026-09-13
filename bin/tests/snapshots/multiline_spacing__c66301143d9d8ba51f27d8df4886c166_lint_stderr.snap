@@ -1,0 +1,21 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+  package = pkgs.writeShellApplication {
+    name = "x";
+  };
+  zed = 2;
+}
+---
+[multiline_spacing] Warning: Multiline attribute is not separated by blank lines
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │ ╭─▶   package = pkgs.writeShellApplication {
+   ┆ ┆   
+ 5 │ ├─▶   };
+   │ │          
+   │ ╰────────── a blank line should come before this multiline attribute
+───╯

@@ -22,6 +22,6 @@ lints! {
     enable_first,
     attribute_ordering,
     enable_blank_line,
-    array_spacing,
+    multiline_spacing,
     array_sorting
 }

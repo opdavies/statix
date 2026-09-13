@@ -11,4 +11,5 @@ assertion_line: 7
 }
 ---
 <temp_file_path>>2:3:W:32:[enable_blank_line] a blank line should separate this from what follows
+<temp_file_path>>3:3:W:33:[multiline_spacing] a blank line should come before this multiline attribute
 <temp_file_path>>5:5:W:30:[enable_first] `enable` should be the first attribute in this set

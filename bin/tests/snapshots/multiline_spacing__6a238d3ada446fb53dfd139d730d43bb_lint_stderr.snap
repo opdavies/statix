@@ -1,0 +1,21 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+
+  kernelModules = [
+    "a"
+    "b"
+  ];
+  zed = 2;
+}
+---
+[multiline_spacing] Warning: Multiline attribute is not separated by blank lines
+   ╭─[ <temp_file_path>:8:3 ]
+   │
+ 8 │   zed = 2;
+   │   ────┬───  
+   │       ╰───── a blank line should follow the multiline attribute above
+───╯

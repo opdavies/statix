@@ -1,0 +1,15 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+
+  kernelModules = [
+    "a"
+    "b"
+  ];
+
+  zed = 2;
+}
+---

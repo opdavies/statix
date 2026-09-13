@@ -14,6 +14,40 @@ assertion_line: 7
   "file": "<temp_file_path>",
   "report": [
     {
+      "name": "multiline_spacing",
+      "note": "Multiline attribute is not separated by blank lines",
+      "code": 33,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 6,
+              "column": 3
+            },
+            "to": {
+              "line": 6,
+              "column": 16
+            }
+          },
+          "message": "a blank line should follow the multiline attribute above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 7,
+                "column": 2
+              }
+            },
+            "fix": "{\n  apple = {\n    zebra = true;\n    ant = true;\n  };\n\n  zebra = true;\n}"
+          }
+        }
+      ]
+    },
+    {
       "name": "attribute_ordering",
       "note": "Attributes are not in alphabetical order",
       "code": 31,

@@ -17,6 +17,15 @@ assertion_line: 7
    │   ───────┬──────  
    │          ╰──────── a blank line should separate this from what follows
 ───╯
+[multiline_spacing] Warning: Multiline attribute is not separated by blank lines
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │ ╭─▶   initrd = {
+   ┆ ┆   
+ 6 │ ├─▶   };
+   │ │          
+   │ ╰────────── a blank line should come before this multiline attribute
+───╯
 [enable_first] Warning: `enable` is not the first attribute
    ╭─[ <temp_file_path>:5:5 ]
    │

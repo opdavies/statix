@@ -1,0 +1,16 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  alpha = [
+    "a"
+    "b"
+  ];
+  beta = [
+    "c"
+    "d"
+  ];
+}
+---
+<temp_file_path>>6:3:W:33:[multiline_spacing] a blank line should follow the multiline attribute above

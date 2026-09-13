@@ -1,0 +1,24 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  alpha = [
+    "a"
+    "b"
+  ];
+  beta = [
+    "c"
+    "d"
+  ];
+}
+---
+[multiline_spacing] Warning: Multiline attribute is not separated by blank lines
+   ╭─[ <temp_file_path>:6:3 ]
+   │
+ 6 │ ╭─▶   beta = [
+   ┆ ┆   
+ 9 │ ├─▶   ];
+   │ │          
+   │ ╰────────── a blank line should follow the multiline attribute above
+───╯

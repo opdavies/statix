@@ -1,0 +1,24 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  name = "x";
+  text = ''
+    hello
+  '';
+  zed = 1;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,7 +1,9 @@
+ {
+   name = "x";
++
+   text = ''
+     hello
+   '';
++
+   zed = 1;
+ }

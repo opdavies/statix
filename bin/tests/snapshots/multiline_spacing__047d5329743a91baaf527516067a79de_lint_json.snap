@@ -1,0 +1,54 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  alpha = [
+    "a"
+    "b"
+  ];
+  beta = [
+    "c"
+    "d"
+  ];
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "multiline_spacing",
+      "note": "Multiline attribute is not separated by blank lines",
+      "code": 33,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 6,
+              "column": 3
+            },
+            "to": {
+              "line": 9,
+              "column": 5
+            }
+          },
+          "message": "a blank line should follow the multiline attribute above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 10,
+                "column": 2
+              }
+            },
+            "fix": "{\n  alpha = [\n    \"a\"\n    \"b\"\n  ];\n\n  beta = [\n    \"c\"\n    \"d\"\n  ];\n}"
+          }
+        }
+      ]
+    }
+  ]
+}

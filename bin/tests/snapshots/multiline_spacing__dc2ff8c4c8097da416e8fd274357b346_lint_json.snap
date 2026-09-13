@@ -1,0 +1,51 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  name = "x";
+  text = ''
+    hello
+  '';
+  zed = 1;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "multiline_spacing",
+      "note": "Multiline attribute is not separated by blank lines",
+      "code": 33,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 5,
+              "column": 6
+            }
+          },
+          "message": "a blank line should come before this multiline attribute",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 7,
+                "column": 2
+              }
+            },
+            "fix": "{\n  name = \"x\";\n\n  text = ''\n    hello\n  '';\n\n  zed = 1;\n}"
+          }
+        }
+      ]
+    }
+  ]
+}

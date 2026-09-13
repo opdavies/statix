@@ -10,6 +10,13 @@ assertion_line: 7
   zebra = true;
 }
 ---
+[multiline_spacing] Warning: Multiline attribute is not separated by blank lines
+   ╭─[ <temp_file_path>:6:3 ]
+   │
+ 6 │   zebra = true;
+   │   ──────┬──────  
+   │         ╰──────── a blank line should follow the multiline attribute above
+───╯
 [attribute_ordering] Warning: Attributes are not in alphabetical order
    ╭─[ <temp_file_path>:4:5 ]
    │

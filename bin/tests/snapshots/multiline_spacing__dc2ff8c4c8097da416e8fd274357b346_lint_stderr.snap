@@ -1,0 +1,21 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  name = "x";
+  text = ''
+    hello
+  '';
+  zed = 1;
+}
+---
+[multiline_spacing] Warning: Multiline attribute is not separated by blank lines
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │ ╭─▶   text = ''
+   ┆ ┆   
+ 5 │ ├─▶   '';
+   │ │           
+   │ ╰─────────── a blank line should come before this multiline attribute
+───╯

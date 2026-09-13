@@ -1,0 +1,26 @@
+---
+source: bin/tests/multiline_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+  kernelModules = [
+    "a"
+    "b"
+  ];
+  zed = 2;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,8 +1,10 @@
+ {
+   foo = 1;
++
+   kernelModules = [
+     "a"
+     "b"
+   ];
++
+   zed = 2;
+ }
