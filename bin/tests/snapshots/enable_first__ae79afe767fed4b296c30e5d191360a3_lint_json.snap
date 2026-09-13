@@ -1,0 +1,39 @@
+---
+source: bin/tests/enable_first.rs
+assertion_line: 7
+---
+{
+  enable = true;
+  initrd = {
+    kernelModules = [ ];
+    enable = true;
+  };
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "enable_first",
+      "note": "`enable` is not the first attribute",
+      "code": 30,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 5,
+              "column": 5
+            },
+            "to": {
+              "line": 5,
+              "column": 19
+            }
+          },
+          "message": "`enable` should be the first attribute in this set",
+          "suggestion": null
+        }
+      ]
+    }
+  ]
+}

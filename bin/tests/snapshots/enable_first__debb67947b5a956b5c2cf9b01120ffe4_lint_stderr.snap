@@ -1,0 +1,9 @@
+---
+source: bin/tests/enable_first.rs
+assertion_line: 7
+---
+{
+  nssmdns4 = true;
+  openFirewall = true;
+}
+---

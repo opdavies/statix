@@ -1,0 +1,10 @@
+---
+source: bin/tests/enable_first.rs
+assertion_line: 7
+---
+{
+  inherit lib;
+  enable = true;
+  nssmdns4 = true;
+}
+---

@@ -1,0 +1,36 @@
+---
+source: bin/tests/enable_first.rs
+assertion_line: 7
+---
+{
+  enableCompletion = true;
+  enable = true;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "enable_first",
+      "note": "`enable` is not the first attribute",
+      "code": 30,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 17
+            }
+          },
+          "message": "`enable` should be the first attribute in this set",
+          "suggestion": null
+        }
+      ]
+    }
+  ]
+}

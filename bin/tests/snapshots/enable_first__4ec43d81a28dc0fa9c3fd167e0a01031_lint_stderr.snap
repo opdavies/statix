@@ -1,0 +1,17 @@
+---
+source: bin/tests/enable_first.rs
+assertion_line: 7
+---
+{
+  nssmdns4 = true;
+  openFirewall = true;
+  enable = true;
+}
+---
+[enable_first] Warning: `enable` is not the first attribute
+   ╭─[ <temp_file_path>:4:3 ]
+   │
+ 4 │   enable = true;
+   │   ───────┬──────  
+   │          ╰──────── enable should be the first attribute in this set
+───╯

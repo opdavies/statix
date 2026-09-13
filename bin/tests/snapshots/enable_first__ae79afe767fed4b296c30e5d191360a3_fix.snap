@@ -1,0 +1,12 @@
+---
+source: bin/tests/enable_first.rs
+assertion_line: 7
+---
+{
+  enable = true;
+  initrd = {
+    kernelModules = [ ];
+    enable = true;
+  };
+}
+---
