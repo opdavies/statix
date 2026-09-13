@@ -2,7 +2,7 @@ use rnix::{
     SyntaxKind, SyntaxNode, TextRange,
     ast::{Attr, AttrpathValue, Entry},
 };
-use rowan::ast::AstNode as _;
+use rowan::{Direction, ast::AstNode as _};
 
 /// The name of an attribute, as written.
 ///
@@ -68,6 +68,25 @@ pub fn is_enable_family(name: &str) -> bool {
     rest.chars()
         .next()
         .is_none_or(|first| first.is_ascii_uppercase())
+}
+
+/// True when a blank line separates two sibling nodes.
+///
+/// Any comment sitting between them is stepped over, so a blank line above
+/// the comment still counts as separating the two. Two newlines in one run
+/// of whitespace is what leaves an empty line between them.
+pub fn blank_line_between(first: &SyntaxNode, second: &SyntaxNode) -> bool {
+    first
+        .siblings_with_tokens(Direction::Next)
+        .take_while(|element| element.as_node() != Some(second))
+        .filter_map(|element| element.into_token())
+        .filter(|token| token.kind() == SyntaxKind::TOKEN_WHITESPACE)
+        .any(|token| token.text().matches('\n').count() >= 2)
+}
+
+/// True when the node is written across more than one line.
+pub fn is_multiline(node: &SyntaxNode) -> bool {
+    node.text().to_string().contains('\n')
 }
 
 pub fn with_preceeding_whitespace(node: &SyntaxNode) -> TextRange {

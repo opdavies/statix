@@ -1,0 +1,17 @@
+---
+source: bin/tests/enable_blank_line.rs
+assertion_line: 7
+---
+{
+  enable = true;
+  # about nssmdns4
+  nssmdns4 = true;
+}
+---
+[enable_blank_line] Warning: No blank line after `enable`
+   ╭─[ <temp_file_path>:2:3 ]
+   │
+ 2 │   enable = true;
+   │   ───────┬──────  
+   │          ╰──────── a blank line should separate this from what follows
+───╯

@@ -1,0 +1,36 @@
+---
+source: bin/tests/enable_blank_line.rs
+assertion_line: 7
+---
+{
+  enable = true;
+  nssmdns4 = true;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "enable_blank_line",
+      "note": "No blank line after `enable`",
+      "code": 32,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 2,
+              "column": 3
+            },
+            "to": {
+              "line": 2,
+              "column": 17
+            }
+          },
+          "message": "a blank line should separate this from what follows",
+          "suggestion": null
+        }
+      ]
+    }
+  ]
+}

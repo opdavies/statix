@@ -1,0 +1,9 @@
+---
+source: bin/tests/enable_blank_line.rs
+assertion_line: 7
+---
+{
+  nssmdns4 = true;
+  enable = true;
+}
+---

@@ -1,0 +1,17 @@
+---
+source: bin/tests/array_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+  extraModulePackages = [ ];
+  bar = 2;
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   extraModulePackages = [ ];
+   │   ─────────────┬────────────  
+   │                ╰────────────── extraModulePackages is out of alphabetical order
+───╯

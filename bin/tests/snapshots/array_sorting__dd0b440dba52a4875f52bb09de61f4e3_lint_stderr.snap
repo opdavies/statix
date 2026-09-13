@@ -1,0 +1,16 @@
+---
+source: bin/tests/array_sorting.rs
+assertion_line: 7
+---
+[
+  "apple"
+  "Zebra"
+]
+---
+[array_sorting] Warning: Array elements are not in alphabetical order
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   "Zebra"
+   │   ───┬───  
+   │      ╰───── "Zebra" is out of alphabetical order
+───╯

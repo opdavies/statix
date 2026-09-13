@@ -1,0 +1,32 @@
+---
+source: bin/tests/array_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+  kernelModules = [
+    "a"
+    "b"
+  ];
+  bar = 2;
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:7:3 ]
+   │
+ 7 │   bar = 2;
+   │   ────┬───  
+   │       ╰───── bar is out of alphabetical order
+───╯
+[array_spacing] Warning: Multiline array is not separated by blank lines
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │ ╭─▶   kernelModules = [
+   ┆ ┆   
+ 6 │ ├─▶   ];
+   │ │          
+   │ ╰────────── a blank line should come before this multiline array
+ 7 │       bar = 2;
+   │       ────┬───  
+   │           ╰───── a blank line should follow the multiline array above
+───╯

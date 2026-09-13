@@ -1,0 +1,76 @@
+---
+source: bin/tests/array_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+  kernelModules = [
+    "a"
+    "b"
+  ];
+  bar = 2;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "attribute_ordering",
+      "note": "Attributes are not in alphabetical order",
+      "code": 31,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 7,
+              "column": 3
+            },
+            "to": {
+              "line": 7,
+              "column": 11
+            }
+          },
+          "message": "`bar` is out of alphabetical order",
+          "suggestion": null
+        }
+      ]
+    },
+    {
+      "name": "array_spacing",
+      "note": "Multiline array is not separated by blank lines",
+      "code": 33,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 6,
+              "column": 5
+            }
+          },
+          "message": "a blank line should come before this multiline array",
+          "suggestion": null
+        },
+        {
+          "at": {
+            "from": {
+              "line": 7,
+              "column": 3
+            },
+            "to": {
+              "line": 7,
+              "column": 11
+            }
+          },
+          "message": "a blank line should follow the multiline array above",
+          "suggestion": null
+        }
+      ]
+    }
+  ]
+}

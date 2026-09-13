@@ -1,0 +1,11 @@
+---
+source: bin/tests/enable_blank_line.rs
+assertion_line: 7
+---
+{
+  enable = true;
+
+  # about nssmdns4
+  nssmdns4 = true;
+}
+---

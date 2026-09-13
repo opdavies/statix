@@ -10,6 +10,13 @@ assertion_line: 7
   };
 }
 ---
+[enable_blank_line] Warning: No blank line after `enable`
+   ╭─[ <temp_file_path>:2:3 ]
+   │
+ 2 │   enable = true;
+   │   ───────┬──────  
+   │          ╰──────── a blank line should separate this from what follows
+───╯
 [enable_first] Warning: `enable` is not the first attribute
    ╭─[ <temp_file_path>:5:5 ]
    │

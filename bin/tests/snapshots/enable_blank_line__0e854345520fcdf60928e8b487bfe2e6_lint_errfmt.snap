@@ -1,0 +1,11 @@
+---
+source: bin/tests/enable_blank_line.rs
+assertion_line: 7
+---
+{
+  enable = true;
+  enableCompletion = true;
+  cdpath = "a";
+}
+---
+<temp_file_path>>3:3:W:32:[enable_blank_line] a blank line should separate this from what follows

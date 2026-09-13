@@ -1,0 +1,10 @@
+---
+source: bin/tests/array_sorting.rs
+assertion_line: 7
+---
+[
+  "apple"
+  "Zebra"
+]
+---
+<temp_file_path>>3:3:W:34:[array_sorting] `"Zebra"` is out of alphabetical order

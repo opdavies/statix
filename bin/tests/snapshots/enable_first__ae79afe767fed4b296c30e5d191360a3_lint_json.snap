@@ -14,6 +14,28 @@ assertion_line: 7
   "file": "<temp_file_path>",
   "report": [
     {
+      "name": "enable_blank_line",
+      "note": "No blank line after `enable`",
+      "code": 32,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 2,
+              "column": 3
+            },
+            "to": {
+              "line": 2,
+              "column": 17
+            }
+          },
+          "message": "a blank line should separate this from what follows",
+          "suggestion": null
+        }
+      ]
+    },
+    {
       "name": "enable_first",
       "note": "`enable` is not the first attribute",
       "code": 30,

@@ -8,3 +8,10 @@ assertion_line: 7
   nssmdns4 = true;
 }
 ---
+[enable_blank_line] Warning: No blank line after `enable`
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   enable = true;
+   │   ───────┬──────  
+   │          ╰──────── a blank line should separate this from what follows
+───╯

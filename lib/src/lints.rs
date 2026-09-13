@@ -20,5 +20,8 @@ lints! {
     repeated_keys,
     empty_list_concat,
     enable_first,
-    attribute_ordering
+    attribute_ordering,
+    enable_blank_line,
+    array_spacing,
+    array_sorting
 }

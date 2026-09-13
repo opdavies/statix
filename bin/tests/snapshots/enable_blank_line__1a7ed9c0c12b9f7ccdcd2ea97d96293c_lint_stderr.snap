@@ -1,0 +1,8 @@
+---
+source: bin/tests/enable_blank_line.rs
+assertion_line: 7
+---
+{
+  enable = true;
+}
+---

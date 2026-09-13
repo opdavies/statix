@@ -1,0 +1,15 @@
+---
+source: bin/tests/array_spacing.rs
+assertion_line: 7
+---
+{
+  foo = 1;
+
+  kernelModules = [
+    "a"
+    "b"
+  ];
+
+  bar = 2;
+}
+---

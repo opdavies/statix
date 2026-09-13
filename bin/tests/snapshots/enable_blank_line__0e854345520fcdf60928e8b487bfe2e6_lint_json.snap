@@ -1,0 +1,37 @@
+---
+source: bin/tests/enable_blank_line.rs
+assertion_line: 7
+---
+{
+  enable = true;
+  enableCompletion = true;
+  cdpath = "a";
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "enable_blank_line",
+      "note": "No blank line after `enable`",
+      "code": 32,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 27
+            }
+          },
+          "message": "a blank line should separate this from what follows",
+          "suggestion": null
+        }
+      ]
+    }
+  ]
+}
