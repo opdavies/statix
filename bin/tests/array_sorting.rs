@@ -93,5 +93,86 @@ generate_tests! {
               \"ahci\"
             ]
         "},
+
+        // a string is compared by its content, so the one the formatter had
+        // to write as ''...'' sorts among the rest rather than apart from
+        // them
+        indoc! {"
+            [
+              ''if [[ \"$1\" == \"\" ]]; then''
+              \"message=$2\"
+              \"nohup _timer $mins\"
+            ]
+        "},
+
+        // the same three, out of order by content
+        indoc! {"
+            [
+              \"nohup _timer $mins\"
+              ''if [[ \"$1\" == \"\" ]]; then''
+              \"message=$2\"
+            ]
+        "},
+
+        // two arrays read against one another by position, where sorting
+        // one alone would pair each string with the wrong replacement
+        indoc! {"
+            builtins.replaceStrings
+              [
+                \"zebra\"
+                \"apple\"
+              ]
+              [
+                \"stripes\"
+                \"core\"
+              ]
+        "},
+
+        // an attribute named order is a sequence
+        indoc! {"
+            {
+              order = [
+                \"intro\"
+                \"hosts\"
+              ];
+            }
+        "},
+
+        // the last attribute of a dotted path is the one naming the array
+        indoc! {"
+            {
+              text.readme.order = [
+                \"intro\"
+                \"hosts\"
+              ];
+            }
+        "},
+
+        // any other attribute is sorted as usual
+        indoc! {"
+            {
+              modules = [
+                \"zebra\"
+                \"apple\"
+              ];
+            }
+        "},
+
+        // a string keeps its place against an expression beside it, rather
+        // than being compared to one by its content alone
+        indoc! {"
+            [
+              \"PATH\"
+              (lib.makeBinPath [ hello ])
+            ]
+        "},
+
+        // and against an identifier
+        indoc! {"
+            [
+              \"zebra\"
+              pkgs.apple
+            ]
+        "},
     ],
 }

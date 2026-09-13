@@ -1,0 +1,48 @@
+---
+source: bin/tests/array_sorting.rs
+---
+[
+  "nohup _timer $mins"
+  ''if [[ "$1" == "" ]]; then''
+  "message=$2"
+]
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "array_sorting",
+      "note": "Array elements are not in alphabetical order",
+      "code": 34,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 32
+            }
+          },
+          "message": "`''if [[ \"$1\" == \"\" ]]; then''` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            "fix": "[\n  ''if [[ \"$1\" == \"\" ]]; then''\n  \"message=$2\"\n  \"nohup _timer $mins\"\n]"
+          }
+        }
+      ]
+    }
+  ]
+}
