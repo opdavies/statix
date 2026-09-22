@@ -8,5 +8,5 @@ source: bin/tests/empty_pattern.rs
    │
  1 │ ({ ... }: 42)
    │  ───┬───  
-   │     ╰───── This pattern is empty, use _ instead
+   │     ╰───── This pattern is empty, remove it
 ───╯

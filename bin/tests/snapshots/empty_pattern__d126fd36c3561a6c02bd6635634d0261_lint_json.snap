@@ -23,7 +23,7 @@ source: bin/tests/empty_pattern.rs
               "column": 9
             }
           },
-          "message": "This pattern is empty, use `_` instead",
+          "message": "This pattern is empty, remove it",
           "suggestion": {
             "at": {
               "from": {
@@ -32,10 +32,10 @@ source: bin/tests/empty_pattern.rs
               },
               "to": {
                 "line": 1,
-                "column": 9
+                "column": 13
               }
             },
-            "fix": "_"
+            "fix": "42"
           }
         }
       ]

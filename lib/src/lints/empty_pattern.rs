@@ -1,4 +1,4 @@
-use crate::{Metadata, Report, Rule, Suggestion, make};
+use crate::{Metadata, Report, Rule, Suggestion};
 
 use macros::lint;
 use rnix::{
@@ -12,25 +12,28 @@ use rowan::ast::AstNode as _;
 /// argument.
 ///
 /// ## Why is this bad?
-/// The intention with empty patterns is not instantly obvious. Prefer
-/// an underscore identifier instead, to indicate that the argument
-/// is being ignored.
+/// An empty pattern accepts arguments but never uses them. When the
+/// body is a plain attribute set, the lambda wrapper is unnecessary
+/// noise. Remove it and expose the body directly.
 ///
 /// ## Example
 ///
 /// ```nix
-/// client = { ... }: {
-///   services.irmaseal-pkg.enable = true;
-/// };
+/// {
+///   foo = { ... }: {
+///     services.irmaseal-pkg.enable = true;
+///   };
+/// }
 /// ```
 ///
-/// Replace the empty variadic pattern with `_` to indicate that you
-/// intend to ignore the argument:
+/// Remove the empty parameter and colon:
 ///
 /// ```nix
-/// client = _: {
-///   services.irmaseal-pkg.enable = true;
-/// };
+/// {
+///   foo = {
+///     services.irmaseal-pkg.enable = true;
+///   };
+/// }
 /// ```
 #[lint(
     name = "empty_pattern",
@@ -62,17 +65,16 @@ impl Rule for EmptyPattern {
             return None;
         }
 
-        if is_module(lambda_expr.body()?.syntax()) {
+        let body = lambda_expr.body()?;
+
+        if is_module(body.syntax()) {
             return None;
         }
 
         Some(self.report().suggest(
             pattern.syntax().text_range(),
-            "This pattern is empty, use `_` instead",
-            Suggestion::with_replacement(
-                pattern.syntax().text_range(),
-                make::ident("_").syntax().clone(),
-            ),
+            "This pattern is empty, remove it",
+            Suggestion::with_replacement(node.text_range(), body.syntax().clone()),
         ))
     }
 }
