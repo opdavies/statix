@@ -1,0 +1,16 @@
+---
+source: bin/tests/inherit_first.rs
+---
+let
+  inherit lib;
+  name = "x";
+in
+  name
+---
+[inherit_blank_line] Warning: No blank line after `inherit`
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   name = "x";
+   │   ─────┬─────  
+   │        ╰─────── a blank line should follow the inherit above
+───╯

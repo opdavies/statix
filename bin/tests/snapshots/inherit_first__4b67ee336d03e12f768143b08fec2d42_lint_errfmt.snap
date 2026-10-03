@@ -1,0 +1,9 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  apple = true;
+  inherit lib;
+}
+---
+<temp_file_path>>3:3:W:38:[inherit_first] `inherit` should come before the assignments above it

@@ -6,3 +6,42 @@ source: bin/tests/inherit_blank_line.rs
   inherit system;
 }
 ---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_first",
+      "note": "`inherit` is not at the top of the set",
+      "code": 38,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 18
+            }
+          },
+          "message": "`inherit` should come before the assignments above it",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 4,
+                "column": 2
+              }
+            },
+            "fix": "{\n  inherit system;\n  owner = \"me\";\n}"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -44,6 +44,40 @@ source: bin/tests/inherit_blank_line.rs
           }
         }
       ]
+    },
+    {
+      "name": "inherit_first",
+      "note": "`inherit` is not at the top of the set",
+      "code": 38,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 3
+            },
+            "to": {
+              "line": 4,
+              "column": 16
+            }
+          },
+          "message": "`inherit` should come before the assignments above it",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 6,
+                "column": 2
+              }
+            },
+            "fix": "{\n  inherit system;\n  inherit name;\n  owner = \"me\";\n  paths = [ ];\n}"
+          }
+        }
+      ]
     }
   ]
 }

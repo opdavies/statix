@@ -1,0 +1,9 @@
+---
+source: bin/tests/inherit_first.rs
+---
+stdenv.mkDerivation rec {
+  version = "1.1.1";
+  inherit (pkgs) pname;
+}
+---
+<temp_file_path>>3:3:W:38:[inherit_first] `inherit` should come before the assignments above it

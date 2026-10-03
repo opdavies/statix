@@ -218,6 +218,17 @@ pub fn assignment_positions(items: &[Segment]) -> Vec<usize> {
         .collect()
 }
 
+/// The positions holding an `inherit`. The inverse of
+/// `assignment_positions`, for the lints that move the inherits around.
+pub fn inherit_positions(items: &[Segment]) -> Vec<usize> {
+    items
+        .iter()
+        .enumerate()
+        .filter(|(_, item)| item.node.kind() == SyntaxKind::NODE_INHERIT)
+        .map(|(position, _)| position)
+        .collect()
+}
+
 /// The positions an alphabetical ordering may move, which is every
 /// assignment other than the enable family, that being a group of its own at
 /// the top of the set.

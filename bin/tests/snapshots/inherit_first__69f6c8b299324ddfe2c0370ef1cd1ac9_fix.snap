@@ -1,0 +1,23 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  # about test
+  test = true;
+  inherit slugifier;
+  spellcheck = true;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,6 +1,8 @@
+ {
++  inherit slugifier;
++
++  spellcheck = true;
++
+   # about test
+   test = true;
+-  inherit slugifier;
+-  spellcheck = true;
+ }

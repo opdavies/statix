@@ -1,0 +1,19 @@
+---
+source: bin/tests/inherit_first.rs
+---
+let
+  name = "x";
+  inherit (pkgs) foo;
+in
+  name
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,5 +1,6 @@
+ let
+-  name = "x";
+   inherit (pkgs) foo;
++
++  name = "x";
+ in
+   name

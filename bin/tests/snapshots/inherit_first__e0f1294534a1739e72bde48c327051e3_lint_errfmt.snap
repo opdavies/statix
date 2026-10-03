@@ -1,0 +1,10 @@
+---
+source: bin/tests/inherit_first.rs
+---
+let
+  name = "x";
+  inherit (pkgs) foo;
+in
+  name
+---
+<temp_file_path>>3:3:W:38:[inherit_first] `inherit` should come before the assignments above it

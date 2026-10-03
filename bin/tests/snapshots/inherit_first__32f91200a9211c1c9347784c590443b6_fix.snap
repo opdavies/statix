@@ -1,0 +1,24 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  inherit lib;
+  attrs = {
+    apple = true;
+    inherit zebra;
+  };
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,7 +1,9 @@
+ {
+   inherit lib;
++
+   attrs = {
++    inherit zebra;
++
+     apple = true;
+-    inherit zebra;
+   };
+ }

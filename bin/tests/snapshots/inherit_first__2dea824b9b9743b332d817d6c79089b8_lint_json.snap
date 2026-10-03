@@ -1,0 +1,82 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  spellcheck = pkgs.callPackage ./spellcheck.pkg.nix { };
+  inherit slugifier;
+  test = pkgs.callPackage ./test.pkg.nix { };
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_blank_line",
+      "note": "No blank line after `inherit`",
+      "code": 36,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 3
+            },
+            "to": {
+              "line": 4,
+              "column": 46
+            }
+          },
+          "message": "a blank line should follow the `inherit` above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            "fix": "{\n  spellcheck = pkgs.callPackage ./spellcheck.pkg.nix { };\n  inherit slugifier;\n\n  test = pkgs.callPackage ./test.pkg.nix { };\n}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inherit_first",
+      "note": "`inherit` is not at the top of the set",
+      "code": 38,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 21
+            }
+          },
+          "message": "`inherit` should come before the assignments above it",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            "fix": "{\n  inherit slugifier;\n  spellcheck = pkgs.callPackage ./spellcheck.pkg.nix { };\n  test = pkgs.callPackage ./test.pkg.nix { };\n}"
+          }
+        }
+      ]
+    }
+  ]
+}

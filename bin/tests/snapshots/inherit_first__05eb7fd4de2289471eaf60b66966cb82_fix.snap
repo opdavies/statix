@@ -1,0 +1,17 @@
+---
+source: bin/tests/inherit_first.rs
+---
+stdenv.mkDerivation rec {
+  version = "1.1.1";
+  inherit (pkgs) pname;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,4 +1,5 @@
+ stdenv.mkDerivation rec {
+-  version = "1.1.1";
+   inherit (pkgs) pname;
++
++  version = "1.1.1";
+ }

@@ -1,0 +1,117 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  # about test
+  test = true;
+  inherit slugifier;
+  spellcheck = true;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "attribute_ordering",
+      "note": "Attributes are not in alphabetical order",
+      "code": 31,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 5,
+              "column": 3
+            },
+            "to": {
+              "line": 5,
+              "column": 21
+            }
+          },
+          "message": "`spellcheck` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 6,
+                "column": 2
+              }
+            },
+            "fix": "{\n  spellcheck = true;\n  inherit slugifier;\n  # about test\n  test = true;\n}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inherit_blank_line",
+      "note": "No blank line after `inherit`",
+      "code": 36,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 5,
+              "column": 3
+            },
+            "to": {
+              "line": 5,
+              "column": 21
+            }
+          },
+          "message": "a blank line should follow the `inherit` above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 6,
+                "column": 2
+              }
+            },
+            "fix": "{\n  # about test\n  test = true;\n  inherit slugifier;\n\n  spellcheck = true;\n}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inherit_first",
+      "note": "`inherit` is not at the top of the set",
+      "code": 38,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 3
+            },
+            "to": {
+              "line": 4,
+              "column": 21
+            }
+          },
+          "message": "`inherit` should come before the assignments above it",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 6,
+                "column": 2
+              }
+            },
+            "fix": "{\n  inherit slugifier;\n  # about test\n  test = true;\n  spellcheck = true;\n}"
+          }
+        }
+      ]
+    }
+  ]
+}

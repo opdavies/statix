@@ -15,3 +15,10 @@ source: bin/tests/inherit_blank_line.rs
    │   ──────┬──────  
    │         ╰──────── a blank line should follow the inherit above
 ───╯
+[inherit_first] Warning: `inherit` is not at the top of the set
+   ╭─[ <temp_file_path>:4:3 ]
+   │
+ 4 │   inherit name;
+   │   ──────┬──────  
+   │         ╰──────── inherit should come before the assignments above it
+───╯

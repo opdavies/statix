@@ -1,0 +1,19 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  enable = true;
+
+  inherit slugifier;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,5 +1,5 @@
+ {
++  inherit slugifier;
++
+   enable = true;
+-
+-  inherit slugifier;
+ }

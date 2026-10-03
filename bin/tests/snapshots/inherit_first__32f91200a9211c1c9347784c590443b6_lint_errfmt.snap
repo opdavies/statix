@@ -1,0 +1,13 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  inherit lib;
+  attrs = {
+    apple = true;
+    inherit zebra;
+  };
+}
+---
+<temp_file_path>>3:3:W:36:[inherit_blank_line] a blank line should follow the `inherit` above
+<temp_file_path>>5:5:W:38:[inherit_first] `inherit` should come before the assignments above it

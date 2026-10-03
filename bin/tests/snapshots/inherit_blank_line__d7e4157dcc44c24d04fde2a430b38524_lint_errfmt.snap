@@ -9,3 +9,4 @@ source: bin/tests/inherit_blank_line.rs
 }
 ---
 <temp_file_path>>3:3:W:36:[inherit_blank_line] a blank line should follow the `inherit` above
+<temp_file_path>>4:3:W:38:[inherit_first] `inherit` should come before the assignments above it

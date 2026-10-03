@@ -57,7 +57,10 @@ impl Rule for EnableBlankLine {
             return None;
         }
 
-        let assignments: Vec<_> = attr_set.entries().filter_map(utils::as_assignment).collect();
+        let assignments: Vec<_> = attr_set
+            .entries()
+            .filter_map(utils::as_assignment)
+            .collect();
 
         let is_family = |assignment: &_| {
             utils::attribute_name(assignment).is_some_and(|name| utils::is_enable_family(&name))
@@ -98,10 +101,7 @@ impl Rule for EnableBlankLine {
 fn separate(node: &SyntaxNode, next: &SyntaxNode) -> Option<SyntaxNode> {
     let mut parts = utils::segments(node);
 
-    let position = parts
-        .items
-        .iter()
-        .position(|item| &item.node == next)?;
+    let position = parts.items.iter().position(|item| &item.node == next)?;
 
     utils::add_blank_line_above(&mut parts, position);
 

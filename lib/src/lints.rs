@@ -23,6 +23,7 @@ lints! {
     attribute_ordering,
     enable_blank_line,
     inherit_blank_line,
+    inherit_first,
     collapsible_inherits,
     blank_lines,
     multiline_spacing,

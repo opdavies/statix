@@ -1,0 +1,84 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  inherit lib;
+  attrs = {
+    apple = true;
+    inherit zebra;
+  };
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_blank_line",
+      "note": "No blank line after `inherit`",
+      "code": 36,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 6,
+              "column": 5
+            }
+          },
+          "message": "a blank line should follow the `inherit` above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 7,
+                "column": 2
+              }
+            },
+            "fix": "{\n  inherit lib;\n\n  attrs = {\n    apple = true;\n    inherit zebra;\n  };\n}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inherit_first",
+      "note": "`inherit` is not at the top of the set",
+      "code": 38,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 5,
+              "column": 5
+            },
+            "to": {
+              "line": 5,
+              "column": 19
+            }
+          },
+          "message": "`inherit` should come before the assignments above it",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 3,
+                "column": 11
+              },
+              "to": {
+                "line": 6,
+                "column": 4
+              }
+            },
+            "fix": "{\n    inherit zebra;\n    apple = true;\n  }"
+          }
+        }
+      ]
+    }
+  ]
+}

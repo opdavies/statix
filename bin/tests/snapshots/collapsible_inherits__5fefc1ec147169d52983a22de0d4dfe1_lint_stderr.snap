@@ -14,3 +14,10 @@ source: bin/tests/collapsible_inherits.rs
    │   ─────┬─────  
    │        ╰─────── a blank line should follow the inherit above
 ───╯
+[inherit_first] Warning: `inherit` is not at the top of the set
+   ╭─[ <temp_file_path>:4:3 ]
+   │
+ 4 │   inherit (pkgs) bar;
+   │   ─────────┬─────────  
+   │            ╰─────────── inherit should come before the assignments above it
+───╯

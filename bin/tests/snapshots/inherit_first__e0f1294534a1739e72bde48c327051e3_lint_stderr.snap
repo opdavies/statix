@@ -1,0 +1,16 @@
+---
+source: bin/tests/inherit_first.rs
+---
+let
+  name = "x";
+  inherit (pkgs) foo;
+in
+  name
+---
+[inherit_first] Warning: `inherit` is not at the top of the set
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   inherit (pkgs) foo;
+   │   ─────────┬─────────  
+   │            ╰─────────── inherit should come before the assignments above it
+───╯

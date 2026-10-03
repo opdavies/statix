@@ -1,0 +1,27 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  inherit lib;
+  attrs = {
+    apple = true;
+    inherit zebra;
+  };
+}
+---
+[inherit_blank_line] Warning: No blank line after `inherit`
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │ ╭─▶   attrs = {
+   ┆ ┆   
+ 6 │ ├─▶   };
+   │ │          
+   │ ╰────────── a blank line should follow the inherit above
+───╯
+[inherit_first] Warning: `inherit` is not at the top of the set
+   ╭─[ <temp_file_path>:5:5 ]
+   │
+ 5 │     inherit zebra;
+   │     ───────┬──────  
+   │            ╰──────── inherit should come before the assignments above it
+───╯

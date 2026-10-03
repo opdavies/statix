@@ -1,0 +1,31 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  # about test
+  test = true;
+  inherit slugifier;
+  spellcheck = true;
+}
+---
+[attribute_ordering] Warning: Attributes are not in alphabetical order
+   ╭─[ <temp_file_path>:5:3 ]
+   │
+ 5 │   spellcheck = true;
+   │   ─────────┬────────  
+   │            ╰────────── spellcheck is out of alphabetical order
+───╯
+[inherit_blank_line] Warning: No blank line after `inherit`
+   ╭─[ <temp_file_path>:5:3 ]
+   │
+ 5 │   spellcheck = true;
+   │   ─────────┬────────  
+   │            ╰────────── a blank line should follow the inherit above
+───╯
+[inherit_first] Warning: `inherit` is not at the top of the set
+   ╭─[ <temp_file_path>:4:3 ]
+   │
+ 4 │   inherit slugifier;
+   │   ─────────┬────────  
+   │            ╰────────── inherit should come before the assignments above it
+───╯

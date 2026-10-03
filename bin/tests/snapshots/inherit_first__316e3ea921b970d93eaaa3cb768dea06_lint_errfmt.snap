@@ -1,0 +1,9 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  inherit lib;
+  apple = true;
+}
+---
+<temp_file_path>>3:3:W:36:[inherit_blank_line] a blank line should follow the `inherit` above

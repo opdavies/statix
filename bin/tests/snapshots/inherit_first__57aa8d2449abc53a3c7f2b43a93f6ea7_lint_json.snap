@@ -1,0 +1,48 @@
+---
+source: bin/tests/inherit_first.rs
+---
+let
+  inherit lib;
+  name = "x";
+in
+  name
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_blank_line",
+      "note": "No blank line after `inherit`",
+      "code": 36,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 14
+            }
+          },
+          "message": "a blank line should follow the `inherit` above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 7
+              }
+            },
+            "fix": "let\n  inherit lib;\n\n  name = \"x\";\nin\n  name"
+          }
+        }
+      ]
+    }
+  ]
+}

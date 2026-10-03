@@ -1,0 +1,20 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  spellcheck = pkgs.callPackage ./spellcheck.pkg.nix { };
+  inherit slugifier;
+  test = pkgs.callPackage ./test.pkg.nix { };
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,5 +1,7 @@
+ {
++  inherit slugifier;
++
+   spellcheck = pkgs.callPackage ./spellcheck.pkg.nix { };
+-  inherit slugifier;
++
+   test = pkgs.callPackage ./test.pkg.nix { };
+ }

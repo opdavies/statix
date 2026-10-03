@@ -1,0 +1,17 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  apple = true;
+  inherit lib;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,4 +1,5 @@
+ {
+-  apple = true;
+   inherit lib;
++
++  apple = true;
+ }

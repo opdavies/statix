@@ -1,0 +1,10 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  enable = true;
+
+  inherit slugifier;
+}
+---
+<temp_file_path>>4:3:W:38:[inherit_first] `inherit` should come before the assignments above it

@@ -1,0 +1,5 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{ spellcheck = "a"; inherit slugifier; }
+---

@@ -1,0 +1,15 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  apple = true;
+  inherit lib;
+}
+---
+[inherit_first] Warning: `inherit` is not at the top of the set
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   inherit lib;
+   │   ──────┬─────  
+   │         ╰─────── inherit should come before the assignments above it
+───╯

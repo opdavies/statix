@@ -63,7 +63,10 @@ impl Rule for MultilineSpacing {
         };
 
         let attr_set = AttrSet::cast(node.clone())?;
-        let assignments: Vec<_> = attr_set.entries().filter_map(utils::as_assignment).collect();
+        let assignments: Vec<_> = attr_set
+            .entries()
+            .filter_map(utils::as_assignment)
+            .collect();
 
         // Each gap that needs opening, named by the attribute below it.
         // Two neighbouring multiline attributes describe the one gap between

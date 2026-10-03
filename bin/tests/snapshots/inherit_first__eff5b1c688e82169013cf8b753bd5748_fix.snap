@@ -1,0 +1,22 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  apple = true;
+  inherit (pkgs) zebra;
+  yak = true;
+  inherit lib;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,6 +1,7 @@
+ {
+-  apple = true;
+   inherit (pkgs) zebra;
+-  yak = true;
+   inherit lib;
++
++  apple = true;
++  yak = true;
+ }

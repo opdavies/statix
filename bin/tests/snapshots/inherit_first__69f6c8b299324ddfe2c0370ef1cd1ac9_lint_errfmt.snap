@@ -1,0 +1,13 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  # about test
+  test = true;
+  inherit slugifier;
+  spellcheck = true;
+}
+---
+<temp_file_path>>5:3:W:31:[attribute_ordering] `spellcheck` is out of alphabetical order
+<temp_file_path>>5:3:W:36:[inherit_blank_line] a blank line should follow the `inherit` above
+<temp_file_path>>4:3:W:38:[inherit_first] `inherit` should come before the assignments above it

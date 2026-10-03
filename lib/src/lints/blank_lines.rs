@@ -48,14 +48,12 @@ impl Rule for BlankLines {
             return None;
         };
 
-        let closes_set = token
-            .next_sibling_or_token()
-            .is_some_and(|next| {
-                matches!(
-                    next.kind(),
-                    SyntaxKind::TOKEN_R_BRACE | SyntaxKind::TOKEN_R_BRACK
-                )
-            });
+        let closes_set = token.next_sibling_or_token().is_some_and(|next| {
+            matches!(
+                next.kind(),
+                SyntaxKind::TOKEN_R_BRACE | SyntaxKind::TOKEN_R_BRACK
+            )
+        });
 
         let text = token.text();
 

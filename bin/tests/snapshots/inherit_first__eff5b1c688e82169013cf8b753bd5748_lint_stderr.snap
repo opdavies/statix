@@ -1,0 +1,24 @@
+---
+source: bin/tests/inherit_first.rs
+---
+{
+  apple = true;
+  inherit (pkgs) zebra;
+  yak = true;
+  inherit lib;
+}
+---
+[inherit_blank_line] Warning: No blank line after `inherit`
+   ╭─[ <temp_file_path>:4:3 ]
+   │
+ 4 │   yak = true;
+   │   ─────┬─────  
+   │        ╰─────── a blank line should follow the inherit above
+───╯
+[inherit_first] Warning: `inherit` is not at the top of the set
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   inherit (pkgs) zebra;
+   │   ──────────┬──────────  
+   │             ╰──────────── inherit should come before the assignments above it
+───╯
