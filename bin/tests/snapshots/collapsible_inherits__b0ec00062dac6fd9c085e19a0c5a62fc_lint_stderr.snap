@@ -1,0 +1,22 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit;
+  inherit bar;
+}
+---
+[empty_inherit] Warning: Found empty inherit statement
+   ╭─[ <temp_file_path>:2:3 ]
+   │
+ 2 │   inherit;
+   │   ────┬───  
+   │       ╰───── Remove this empty inherit statement
+───╯
+[collapsible_inherits] Warning: Consecutive inherit statements are collapsible
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   inherit bar;
+   │   ──────┬─────  
+   │         ╰─────── These consecutive inherit statements can be merged into one
+───╯

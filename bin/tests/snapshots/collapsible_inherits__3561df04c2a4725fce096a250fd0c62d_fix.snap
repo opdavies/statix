@@ -1,0 +1,16 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit (pkgs) foo bar;
+  inherit (pkgs) baz;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,4 +1,3 @@
+ {
+-  inherit (pkgs) foo bar;
+-  inherit (pkgs) baz;
++  inherit (pkgs) foo bar baz;
+ }

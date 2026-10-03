@@ -1,0 +1,15 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit (pkgs) foo bar;
+  inherit (pkgs) baz;
+}
+---
+[collapsible_inherits] Warning: Consecutive inherit statements are collapsible
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   inherit (pkgs) baz;
+   │   ─────────┬─────────  
+   │            ╰─────────── These consecutive inherit statements can be merged into one
+───╯

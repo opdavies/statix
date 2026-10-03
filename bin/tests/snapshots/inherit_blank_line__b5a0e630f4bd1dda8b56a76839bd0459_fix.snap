@@ -9,10 +9,11 @@ source: bin/tests/inherit_blank_line.rs
 ---
 --- <temp_file_path>
 +++ <temp_file_path> [fixed]
-@@ -1,5 +1,6 @@
+@@ -1,5 +1,5 @@
  {
-   inherit system;
-   inherit arch;
+-  inherit system;
+-  inherit arch;
++  inherit system arch;
 +
    owner = "me";
  }

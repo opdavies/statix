@@ -1,45 +1,44 @@
 ---
-source: bin/tests/inherit_blank_line.rs
+source: bin/tests/collapsible_inherits.rs
 ---
 {
-  inherit system;
-  inherit arch;
-  owner = "me";
+  inherit;
+  inherit bar;
 }
 ---
 {
   "file": "<temp_file_path>",
   "report": [
     {
-      "name": "inherit_blank_line",
-      "note": "No blank line after `inherit`",
-      "code": 36,
+      "name": "empty_inherit",
+      "note": "Found empty inherit statement",
+      "code": 14,
       "severity": "Warn",
       "diagnostics": [
         {
           "at": {
             "from": {
-              "line": 4,
+              "line": 2,
               "column": 3
             },
             "to": {
-              "line": 4,
-              "column": 16
+              "line": 2,
+              "column": 11
             }
           },
-          "message": "a blank line should follow the `inherit` above",
+          "message": "Remove this empty `inherit` statement",
           "suggestion": {
             "at": {
               "from": {
                 "line": 1,
-                "column": 1
+                "column": 2
               },
               "to": {
-                "line": 5,
-                "column": 2
+                "line": 2,
+                "column": 11
               }
             },
-            "fix": "{\n  inherit system;\n  inherit arch;\n\n  owner = \"me\";\n}"
+            "fix": ""
           }
         }
       ]
@@ -58,7 +57,7 @@ source: bin/tests/inherit_blank_line.rs
             },
             "to": {
               "line": 3,
-              "column": 16
+              "column": 15
             }
           },
           "message": "These consecutive `inherit` statements can be merged into one",
@@ -70,10 +69,10 @@ source: bin/tests/inherit_blank_line.rs
               },
               "to": {
                 "line": 3,
-                "column": 16
+                "column": 15
               }
             },
-            "fix": "inherit system arch;"
+            "fix": "inherit bar;"
           }
         }
       ]

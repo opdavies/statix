@@ -1,0 +1,48 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit (pkgs) foo;
+  name = "x";
+  inherit (pkgs) bar;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_blank_line",
+      "note": "No blank line after `inherit`",
+      "code": 36,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 3
+            },
+            "to": {
+              "line": 3,
+              "column": 14
+            }
+          },
+          "message": "a blank line should follow the `inherit` above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            "fix": "{\n  inherit (pkgs) foo;\n\n  name = \"x\";\n  inherit (pkgs) bar;\n}"
+          }
+        }
+      ]
+    }
+  ]
+}

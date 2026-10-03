@@ -1,0 +1,9 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit (pkgs) foo;
+  inherit (pkgs) bar;
+}
+---
+<temp_file_path>>3:3:W:37:[collapsible_inherits] These consecutive `inherit` statements can be merged into one

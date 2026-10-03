@@ -1,0 +1,48 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit (pkgs) foo;
+  inherit (pkgs) bar;
+  inherit (pkgs) baz;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "collapsible_inherits",
+      "note": "Consecutive inherit statements are collapsible",
+      "code": 37,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 3
+            },
+            "to": {
+              "line": 4,
+              "column": 22
+            }
+          },
+          "message": "These consecutive `inherit` statements can be merged into one",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 2,
+                "column": 3
+              },
+              "to": {
+                "line": 4,
+                "column": 22
+              }
+            },
+            "fix": "inherit (pkgs) foo bar baz;"
+          }
+        }
+      ]
+    }
+  ]
+}

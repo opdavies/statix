@@ -1,0 +1,8 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit (pkgs) foo;
+  inherit lib;
+}
+---

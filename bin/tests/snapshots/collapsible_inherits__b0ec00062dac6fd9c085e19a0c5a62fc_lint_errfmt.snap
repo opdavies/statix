@@ -1,0 +1,10 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit;
+  inherit bar;
+}
+---
+<temp_file_path>>2:3:W:14:[empty_inherit] Remove this empty `inherit` statement
+<temp_file_path>>3:3:W:37:[collapsible_inherits] These consecutive `inherit` statements can be merged into one

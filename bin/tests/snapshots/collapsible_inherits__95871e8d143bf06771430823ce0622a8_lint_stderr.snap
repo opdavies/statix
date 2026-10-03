@@ -1,0 +1,15 @@
+---
+source: bin/tests/collapsible_inherits.rs
+---
+{
+  inherit foo;
+  inherit bar;
+}
+---
+[collapsible_inherits] Warning: Consecutive inherit statements are collapsible
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   inherit bar;
+   │   ──────┬─────  
+   │         ╰─────── These consecutive inherit statements can be merged into one
+───╯

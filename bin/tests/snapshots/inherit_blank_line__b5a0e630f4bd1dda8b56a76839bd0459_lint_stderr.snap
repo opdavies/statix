@@ -14,3 +14,10 @@ source: bin/tests/inherit_blank_line.rs
    │   ──────┬──────  
    │         ╰──────── a blank line should follow the inherit above
 ───╯
+[collapsible_inherits] Warning: Consecutive inherit statements are collapsible
+   ╭─[ <temp_file_path>:3:3 ]
+   │
+ 3 │   inherit arch;
+   │   ──────┬──────  
+   │         ╰──────── These consecutive inherit statements can be merged into one
+───╯
