@@ -1,0 +1,12 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit b a; }
+---
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:1:13 ]
+   │
+ 1 │ { inherit b a; }
+   │             ┬  
+   │             ╰── a is out of alphabetical order
+───╯

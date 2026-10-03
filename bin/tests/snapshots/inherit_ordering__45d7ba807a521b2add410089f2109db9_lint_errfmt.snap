@@ -1,0 +1,12 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib) mkMerge mkIf;
+  inherit (inputs) self nixpkgs;
+  inherit zebra apple;
+}
+---
+<temp_file_path>>2:25:W:39:[inherit_ordering] `mkIf` is out of alphabetical order
+<temp_file_path>>3:25:W:39:[inherit_ordering] `nixpkgs` is out of alphabetical order
+<temp_file_path>>4:17:W:39:[inherit_ordering] `apple` is out of alphabetical order

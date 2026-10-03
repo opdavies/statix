@@ -24,6 +24,7 @@ lints! {
     enable_blank_line,
     inherit_blank_line,
     inherit_first,
+    inherit_ordering,
     collapsible_inherits,
     blank_lines,
     multiline_spacing,

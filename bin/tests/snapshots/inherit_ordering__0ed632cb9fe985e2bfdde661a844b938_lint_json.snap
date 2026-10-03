@@ -1,0 +1,112 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit zebra yak; inherit yak ${apple}; }
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 1,
+              "column": 17
+            },
+            "to": {
+              "line": 1,
+              "column": 20
+            }
+          },
+          "message": "`yak` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 3
+              },
+              "to": {
+                "line": 1,
+                "column": 21
+              }
+            },
+            "fix": "inherit yak zebra;"
+          }
+        }
+      ]
+    },
+    {
+      "name": "collapsible_inherits",
+      "note": "Consecutive inherit statements are collapsible",
+      "code": 37,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 1,
+              "column": 22
+            },
+            "to": {
+              "line": 1,
+              "column": 43
+            }
+          },
+          "message": "These consecutive `inherit` statements can be merged into one",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 3
+              },
+              "to": {
+                "line": 1,
+                "column": 43
+              }
+            },
+            "fix": "inherit zebra yak yak ${apple};"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 1,
+              "column": 34
+            },
+            "to": {
+              "line": 1,
+              "column": 42
+            }
+          },
+          "message": "`${apple}` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 22
+              },
+              "to": {
+                "line": 1,
+                "column": 43
+              }
+            },
+            "fix": "inherit ${apple} yak;"
+          }
+        }
+      ]
+    }
+  ]
+}

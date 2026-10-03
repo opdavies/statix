@@ -1,0 +1,20 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkPackageOption
+    mkOption
+    ;
+}
+---
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:7:5 ]
+   │
+ 7 │     mkOption
+   │     ────┬───  
+   │         ╰───── mkOption is out of alphabetical order
+───╯

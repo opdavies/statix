@@ -1,0 +1,6 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit lib pkgs inputs; }
+---
+<temp_file_path>>1:20:W:39:[inherit_ordering] `inputs` is out of alphabetical order

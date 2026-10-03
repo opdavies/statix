@@ -1,0 +1,23 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit apple zebra
+    middle;
+  other = true;
+}
+---
+[inherit_blank_line] Warning: No blank line after `inherit`
+   ╭─[ <temp_file_path>:4:3 ]
+   │
+ 4 │   other = true;
+   │   ──────┬──────  
+   │         ╰──────── a blank line should follow the inherit above
+───╯
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:3:5 ]
+   │
+ 3 │     middle;
+   │     ───┬──  
+   │        ╰──── middle is out of alphabetical order
+───╯

@@ -6,6 +6,13 @@ source: bin/tests/collapsible_inherits.rs
   inherit (pkgs) baz;
 }
 ---
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:2:22 ]
+   │
+ 2 │   inherit (pkgs) foo bar;
+   │                      ─┬─  
+   │                       ╰─── bar is out of alphabetical order
+───╯
 [collapsible_inherits] Warning: Consecutive inherit statements are collapsible
    ╭─[ <temp_file_path>:3:3 ]
    │

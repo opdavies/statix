@@ -1,0 +1,52 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkPackageOption
+    mkOption
+    ;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 7,
+              "column": 5
+            },
+            "to": {
+              "line": 7,
+              "column": 13
+            }
+          },
+          "message": "`mkOption` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 2,
+                "column": 3
+              },
+              "to": {
+                "line": 8,
+                "column": 6
+              }
+            },
+            "fix": "inherit (lib)\n    mkEnableOption\n    mkIf\n    mkMerge\n    mkOption\n    mkPackageOption\n    ;"
+          }
+        }
+      ]
+    }
+  ]
+}

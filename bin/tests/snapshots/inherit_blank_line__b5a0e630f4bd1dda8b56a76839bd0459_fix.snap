@@ -13,7 +13,7 @@ source: bin/tests/inherit_blank_line.rs
  {
 -  inherit system;
 -  inherit arch;
-+  inherit system arch;
++  inherit arch system;
 +
    owner = "me";
  }

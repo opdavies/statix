@@ -1,0 +1,30 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib) mkMerge mkIf;
+  inherit (inputs) self nixpkgs;
+  inherit zebra apple;
+}
+---
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:2:25 ]
+   │
+ 2 │   inherit (lib) mkMerge mkIf;
+   │                         ──┬─  
+   │                           ╰─── mkIf is out of alphabetical order
+───╯
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:3:25 ]
+   │
+ 3 │   inherit (inputs) self nixpkgs;
+   │                         ───┬───  
+   │                            ╰───── nixpkgs is out of alphabetical order
+───╯
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:4:17 ]
+   │
+ 4 │   inherit zebra apple;
+   │                 ──┬──  
+   │                   ╰──── apple is out of alphabetical order
+───╯

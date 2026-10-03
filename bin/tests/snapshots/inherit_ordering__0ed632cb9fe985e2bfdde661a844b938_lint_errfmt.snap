@@ -1,0 +1,8 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit zebra yak; inherit yak ${apple}; }
+---
+<temp_file_path>>1:17:W:39:[inherit_ordering] `yak` is out of alphabetical order
+<temp_file_path>>1:22:W:37:[collapsible_inherits] These consecutive `inherit` statements can be merged into one
+<temp_file_path>>1:34:W:39:[inherit_ordering] `${apple}` is out of alphabetical order

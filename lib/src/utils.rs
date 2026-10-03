@@ -229,6 +229,23 @@ pub fn inherit_positions(items: &[Segment]) -> Vec<usize> {
         .collect()
 }
 
+/// The positions holding a name of an `inherit`. The from-expression of
+/// `inherit (expr) …` is wrapped in its own node, a different kind from the
+/// attrs naming what is inherited, and stays where the author put it.
+pub fn inherit_name_positions(items: &[Segment]) -> Vec<usize> {
+    items
+        .iter()
+        .enumerate()
+        .filter(|(_, item)| {
+            matches!(
+                item.node.kind(),
+                SyntaxKind::NODE_IDENT | SyntaxKind::NODE_STRING | SyntaxKind::NODE_DYNAMIC
+            )
+        })
+        .map(|(position, _)| position)
+        .collect()
+}
+
 /// The positions an alphabetical ordering may move, which is every
 /// assignment other than the enable family, that being a group of its own at
 /// the top of the set.

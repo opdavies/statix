@@ -1,0 +1,44 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit lib pkgs inputs; }
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 1,
+              "column": 20
+            },
+            "to": {
+              "line": 1,
+              "column": 26
+            }
+          },
+          "message": "`inputs` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 3
+              },
+              "to": {
+                "line": 1,
+                "column": 27
+              }
+            },
+            "fix": "inherit inputs lib pkgs;"
+          }
+        }
+      ]
+    }
+  ]
+}

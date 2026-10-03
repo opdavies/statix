@@ -1,0 +1,5 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit (inputs) self; }
+---

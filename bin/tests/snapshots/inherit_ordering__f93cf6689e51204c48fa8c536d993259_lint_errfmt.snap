@@ -1,0 +1,6 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit (lib) mkMerge mkIf; }
+---
+<temp_file_path>>1:25:W:39:[inherit_ordering] `mkIf` is out of alphabetical order

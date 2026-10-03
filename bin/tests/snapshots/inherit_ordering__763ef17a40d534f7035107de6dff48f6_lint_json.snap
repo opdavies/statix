@@ -1,0 +1,51 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit
+    apple
+    DOMAIN
+    Banana
+    _module
+    ;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 5
+            },
+            "to": {
+              "line": 4,
+              "column": 11
+            }
+          },
+          "message": "`DOMAIN` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 2,
+                "column": 3
+              },
+              "to": {
+                "line": 7,
+                "column": 6
+              }
+            },
+            "fix": "inherit\n    Banana\n    DOMAIN\n    _module\n    apple\n    ;"
+          }
+        }
+      ]
+    }
+  ]
+}

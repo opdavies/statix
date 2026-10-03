@@ -1,0 +1,13 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    mkPackageOption
+    ;
+}
+---

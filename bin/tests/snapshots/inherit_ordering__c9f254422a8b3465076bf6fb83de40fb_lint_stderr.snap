@@ -1,0 +1,19 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib)
+    # about mkMerge
+    mkMerge
+    # about mkIf
+    mkIf
+    ;
+}
+---
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:6:5 ]
+   │
+ 6 │     mkIf
+   │     ──┬─  
+   │       ╰─── mkIf is out of alphabetical order
+───╯

@@ -1,0 +1,20 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib) mkMerge mkIf;
+  inherit (inputs) self nixpkgs;
+  inherit zebra apple;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,5 +1,5 @@
+ {
+-  inherit (lib) mkMerge mkIf;
+-  inherit (inputs) self nixpkgs;
+-  inherit zebra apple;
++  inherit (lib) mkIf mkMerge;
++  inherit (inputs) nixpkgs self;
++  inherit apple zebra;
+ }

@@ -12,5 +12,5 @@ source: bin/tests/collapsible_inherits.rs
  {
 -  inherit foo;
 -  inherit bar;
-+  inherit foo bar;
++  inherit bar foo;
  }

@@ -1,0 +1,19 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit
+    apple
+    DOMAIN
+    Banana
+    _module
+    ;
+}
+---
+[inherit_ordering] Warning: Inherited names are not in alphabetical order
+   ╭─[ <temp_file_path>:4:5 ]
+   │
+ 4 │     DOMAIN
+   │     ───┬──  
+   │        ╰──── DOMAIN is out of alphabetical order
+───╯

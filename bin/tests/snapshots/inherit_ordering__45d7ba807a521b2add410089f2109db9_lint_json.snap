@@ -1,0 +1,116 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib) mkMerge mkIf;
+  inherit (inputs) self nixpkgs;
+  inherit zebra apple;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 2,
+              "column": 25
+            },
+            "to": {
+              "line": 2,
+              "column": 29
+            }
+          },
+          "message": "`mkIf` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 2,
+                "column": 3
+              },
+              "to": {
+                "line": 2,
+                "column": 30
+              }
+            },
+            "fix": "inherit (lib) mkIf mkMerge;"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 3,
+              "column": 25
+            },
+            "to": {
+              "line": 3,
+              "column": 32
+            }
+          },
+          "message": "`nixpkgs` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 3,
+                "column": 3
+              },
+              "to": {
+                "line": 3,
+                "column": 33
+              }
+            },
+            "fix": "inherit (inputs) nixpkgs self;"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 17
+            },
+            "to": {
+              "line": 4,
+              "column": 22
+            }
+          },
+          "message": "`apple` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 4,
+                "column": 3
+              },
+              "to": {
+                "line": 4,
+                "column": 23
+              }
+            },
+            "fix": "inherit apple zebra;"
+          }
+        }
+      ]
+    }
+  ]
+}

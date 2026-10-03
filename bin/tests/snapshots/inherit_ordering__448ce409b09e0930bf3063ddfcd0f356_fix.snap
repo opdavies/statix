@@ -1,0 +1,25 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkPackageOption
+    mkOption
+    ;
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -2,8 +2,8 @@
+   inherit (lib)
+     mkEnableOption
+     mkIf
+     mkMerge
++    mkOption
+     mkPackageOption
+-    mkOption
+     ;
+ }

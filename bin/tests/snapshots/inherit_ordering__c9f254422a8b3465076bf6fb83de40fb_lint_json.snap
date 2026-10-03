@@ -1,0 +1,51 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{
+  inherit (lib)
+    # about mkMerge
+    mkMerge
+    # about mkIf
+    mkIf
+    ;
+}
+---
+{
+  "file": "<temp_file_path>",
+  "report": [
+    {
+      "name": "inherit_ordering",
+      "note": "Inherited names are not in alphabetical order",
+      "code": 39,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 6,
+              "column": 5
+            },
+            "to": {
+              "line": 6,
+              "column": 9
+            }
+          },
+          "message": "`mkIf` is out of alphabetical order",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 2,
+                "column": 3
+              },
+              "to": {
+                "line": 7,
+                "column": 6
+              }
+            },
+            "fix": "inherit (lib)\n    # about mkIf\n    mkIf\n    # about mkMerge\n    mkMerge\n    ;"
+          }
+        }
+      ]
+    }
+  ]
+}

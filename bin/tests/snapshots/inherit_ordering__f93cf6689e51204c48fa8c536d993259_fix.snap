@@ -1,0 +1,10 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit (lib) mkMerge mkIf; }
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1 +1 @@
+-{ inherit (lib) mkMerge mkIf; }
++{ inherit (lib) mkIf mkMerge; }

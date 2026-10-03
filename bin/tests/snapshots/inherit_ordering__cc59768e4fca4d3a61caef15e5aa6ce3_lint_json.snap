@@ -1,14 +1,49 @@
 ---
-source: bin/tests/collapsible_inherits.rs
+source: bin/tests/inherit_ordering.rs
 ---
 {
-  inherit (pkgs) foo bar;
-  inherit (pkgs) baz;
+  inherit apple zebra
+    middle;
+  other = true;
 }
 ---
 {
   "file": "<temp_file_path>",
   "report": [
+    {
+      "name": "inherit_blank_line",
+      "note": "No blank line after `inherit`",
+      "code": 36,
+      "severity": "Warn",
+      "diagnostics": [
+        {
+          "at": {
+            "from": {
+              "line": 4,
+              "column": 3
+            },
+            "to": {
+              "line": 4,
+              "column": 16
+            }
+          },
+          "message": "a blank line should follow the `inherit` above",
+          "suggestion": {
+            "at": {
+              "from": {
+                "line": 1,
+                "column": 1
+              },
+              "to": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            "fix": "{\n  inherit apple zebra\n    middle;\n\n  other = true;\n}"
+          }
+        }
+      ]
+    },
     {
       "name": "inherit_ordering",
       "note": "Inherited names are not in alphabetical order",
@@ -18,49 +53,15 @@ source: bin/tests/collapsible_inherits.rs
         {
           "at": {
             "from": {
-              "line": 2,
-              "column": 22
-            },
-            "to": {
-              "line": 2,
-              "column": 25
-            }
-          },
-          "message": "`bar` is out of alphabetical order",
-          "suggestion": {
-            "at": {
-              "from": {
-                "line": 2,
-                "column": 3
-              },
-              "to": {
-                "line": 2,
-                "column": 26
-              }
-            },
-            "fix": "inherit (pkgs) bar foo;"
-          }
-        }
-      ]
-    },
-    {
-      "name": "collapsible_inherits",
-      "note": "Consecutive inherit statements are collapsible",
-      "code": 37,
-      "severity": "Warn",
-      "diagnostics": [
-        {
-          "at": {
-            "from": {
               "line": 3,
-              "column": 3
+              "column": 5
             },
             "to": {
               "line": 3,
-              "column": 22
+              "column": 11
             }
           },
-          "message": "These consecutive `inherit` statements can be merged into one",
+          "message": "`middle` is out of alphabetical order",
           "suggestion": {
             "at": {
               "from": {
@@ -69,10 +70,10 @@ source: bin/tests/collapsible_inherits.rs
               },
               "to": {
                 "line": 3,
-                "column": 22
+                "column": 12
               }
             },
-            "fix": "inherit (pkgs) foo bar baz;"
+            "fix": "inherit apple middle\n    zebra;"
           }
         }
       ]

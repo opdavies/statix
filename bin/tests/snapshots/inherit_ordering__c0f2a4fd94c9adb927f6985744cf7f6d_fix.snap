@@ -1,0 +1,10 @@
+---
+source: bin/tests/inherit_ordering.rs
+---
+{ inherit b a; }
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1 +1 @@
+-{ inherit b a; }
++{ inherit a b; }
