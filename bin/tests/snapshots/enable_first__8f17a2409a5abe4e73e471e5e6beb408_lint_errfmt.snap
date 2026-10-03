@@ -1,6 +1,5 @@
 ---
 source: bin/tests/enable_first.rs
-assertion_line: 7
 ---
 {
   inherit lib;
@@ -9,3 +8,4 @@ assertion_line: 7
 }
 ---
 <temp_file_path>>3:3:W:32:[enable_blank_line] a blank line should separate this from what follows
+<temp_file_path>>3:3:W:36:[inherit_blank_line] a blank line should follow the `inherit` above

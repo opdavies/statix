@@ -1,11 +1,11 @@
 ---
-source: bin/tests/attribute_ordering.rs
+source: bin/tests/inherit_blank_line.rs
 ---
-{
-  inherit lib;
-  apple = true;
-  zebra = true;
-}
+let
+  inherit system;
+  owner = "me";
+in
+  owner
 ---
 {
   "file": "<temp_file_path>",
@@ -36,10 +36,10 @@ source: bin/tests/attribute_ordering.rs
               },
               "to": {
                 "line": 5,
-                "column": 2
+                "column": 8
               }
             },
-            "fix": "{\n  inherit lib;\n\n  apple = true;\n  zebra = true;\n}"
+            "fix": "let\n  inherit system;\n\n  owner = \"me\";\nin\n  owner"
           }
         }
       ]

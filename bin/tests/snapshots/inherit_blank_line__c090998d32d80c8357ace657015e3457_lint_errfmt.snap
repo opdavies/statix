@@ -1,0 +1,10 @@
+---
+source: bin/tests/inherit_blank_line.rs
+---
+{
+  inherit system;
+
+  # where the code lives
+  owner = "me";
+}
+---

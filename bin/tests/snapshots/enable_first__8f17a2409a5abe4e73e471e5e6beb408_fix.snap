@@ -1,6 +1,5 @@
 ---
 source: bin/tests/enable_first.rs
-assertion_line: 7
 ---
 {
   inherit lib;
@@ -10,9 +9,10 @@ assertion_line: 7
 ---
 --- <temp_file_path>
 +++ <temp_file_path> [fixed]
-@@ -1,5 +1,6 @@
+@@ -1,5 +1,7 @@
  {
    inherit lib;
++
    enable = true;
 +
    nssmdns4 = true;

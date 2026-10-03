@@ -1,10 +1,9 @@
 ---
-source: bin/tests/attribute_ordering.rs
+source: bin/tests/inherit_blank_line.rs
 ---
 {
-  inherit lib;
-  apple = true;
-  zebra = true;
+  inherit system;
+  owner = "me";
 }
 ---
 <temp_file_path>>3:3:W:36:[inherit_blank_line] a blank line should follow the `inherit` above

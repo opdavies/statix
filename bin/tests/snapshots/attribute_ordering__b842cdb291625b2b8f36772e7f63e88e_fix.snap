@@ -1,6 +1,5 @@
 ---
 source: bin/tests/attribute_ordering.rs
-assertion_line: 7
 ---
 {
   inherit lib;
@@ -8,3 +7,12 @@ assertion_line: 7
   zebra = true;
 }
 ---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,5 +1,6 @@
+ {
+   inherit lib;
++
+   apple = true;
+   zebra = true;
+ }

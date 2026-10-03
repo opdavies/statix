@@ -1,10 +1,10 @@
 ---
-source: bin/tests/attribute_ordering.rs
+source: bin/tests/inherit_blank_line.rs
 ---
 {
-  inherit lib;
-  apple = true;
-  zebra = true;
+  inherit system;
+  # where the code lives
+  owner = "me";
 }
 ---
 {
@@ -19,11 +19,11 @@ source: bin/tests/attribute_ordering.rs
         {
           "at": {
             "from": {
-              "line": 3,
+              "line": 4,
               "column": 3
             },
             "to": {
-              "line": 3,
+              "line": 4,
               "column": 16
             }
           },
@@ -39,7 +39,7 @@ source: bin/tests/attribute_ordering.rs
                 "column": 2
               }
             },
-            "fix": "{\n  inherit lib;\n\n  apple = true;\n  zebra = true;\n}"
+            "fix": "{\n  inherit system;\n\n  # where the code lives\n  owner = \"me\";\n}"
           }
         }
       ]

@@ -1,0 +1,16 @@
+---
+source: bin/tests/inherit_blank_line.rs
+---
+{
+  inherit system;
+  owner = "me";
+}
+---
+--- <temp_file_path>
++++ <temp_file_path> [fixed]
+@@ -1,4 +1,5 @@
+ {
+   inherit system;
++
+   owner = "me";
+ }

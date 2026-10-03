@@ -1,0 +1,17 @@
+---
+source: bin/tests/inherit_blank_line.rs
+---
+{
+  inputs = {
+    inherit system;
+    owner = "me";
+  };
+}
+---
+[inherit_blank_line] Warning: No blank line after `inherit`
+   ╭─[ <temp_file_path>:4:5 ]
+   │
+ 4 │     owner = "me";
+   │     ──────┬──────  
+   │           ╰──────── a blank line should follow the inherit above
+───╯
