@@ -1,10 +1,10 @@
 { inputs, ... }:
 {
-  imports = [ "${inputs.git-hooks}/flake-module.nix" ];
-
   gitignore = [
     "/.pre-commit-config.yaml"
   ];
+
+  imports = [ "${inputs.git-hooks}/flake-module.nix" ];
 
   perSystem =
     { config, ... }:

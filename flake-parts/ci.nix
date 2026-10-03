@@ -6,36 +6,41 @@ in
     { pkgs, ... }:
     {
       files.file.${path}.source = pkgs.writers.writeJSON "gh-actions-workflow-check.yaml" {
-        name = "Check";
-        on = {
-          pull_request = { };
-          push = { };
-          workflow_dispatch = { };
-        };
         jobs = {
           check = {
             runs-on = "ubuntu-latest";
+
             steps = [
               { uses = "actions/checkout@v5"; }
               {
-                uses = "cachix/install-nix-action@master";
                 "with" = {
                   extra_nix_config = ''
                     keep-env-derivations = true
                     keep-outputs = true
                   '';
+
                   github_access_token = "\${{ secrets.GITHUB_TOKEN }}";
                 };
+
+                uses = "cachix/install-nix-action@master";
               }
               {
-                uses = "nix-community/cache-nix-action@main";
                 "with".primary-key = "nix-\${{ runner.os }}";
+                uses = "nix-community/cache-nix-action@main";
               }
               {
                 run = "nix --accept-flake-config flake check --print-build-logs";
               }
             ];
           };
+        };
+
+        name = "Check";
+
+        on = {
+          pull_request = { };
+          push = { };
+          workflow_dispatch = { };
         };
       };
 

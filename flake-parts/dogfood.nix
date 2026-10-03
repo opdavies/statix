@@ -5,6 +5,7 @@
     let
       src = lib.fileset.toSource {
         inherit root;
+
         fileset = lib.fileset.fileFilter (file: file.hasExt "nix") root;
       };
     in

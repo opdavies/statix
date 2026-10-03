@@ -8,23 +8,28 @@
       pre-commit.settings.hooks.treefmt.enable = true;
 
       treefmt = {
-        projectRootFile = "flake.nix";
         programs = {
           nixfmt = {
             enable = true;
+
             package = pkgs.nixfmt;
           };
+
           prettier.enable = true;
+
           taplo = {
             enable = true;
+
             settings.formatting = {
-              reorder_keys = true;
+              allowed_blank_lines = 1;
               reorder_arrays = true;
               reorder_inline_tables = true;
-              allowed_blank_lines = 1;
+              reorder_keys = true;
             };
           };
         };
+
+        projectRootFile = "flake.nix";
         settings.on-unmatched = "fatal";
       };
     };

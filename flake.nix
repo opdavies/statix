@@ -1,40 +1,45 @@
 {
+  inputs = {
+    files = {
+      flake = false;
+      url = "github:mightyiam/files";
+    };
+
+    flake-parts = {
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+      url = "github:hercules-ci/flake-parts";
+    };
+
+    git-hooks = {
+      flake = false;
+      url = "github:cachix/git-hooks.nix";
+    };
+
+    import-tree = {
+      flake = false;
+      url = "github:denful/import-tree";
+    };
+
+    make-shell = {
+      flake = false;
+      url = "github:nicknovitski/make-shell";
+    };
+
+    nixpkgs = {
+      url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    };
+
+    treefmt = {
+      flake = false;
+      url = "github:numtide/treefmt-nix";
+    };
+  };
+
   nixConfig = {
     abort-on-warn = true;
     allow-import-from-derivation = false;
   };
 
-  inputs = {
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
-    import-tree = {
-      url = "github:denful/import-tree";
-      flake = false;
-    };
-    nixpkgs = {
-      url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
-    };
-
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      flake = false;
-    };
-    make-shell = {
-      url = "github:nicknovitski/make-shell";
-      flake = false;
-    };
-    files = {
-      url = "github:mightyiam/files";
-      flake = false;
-    };
-    treefmt = {
-      url = "github:numtide/treefmt-nix";
-      flake = false;
-    };
-  };
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
